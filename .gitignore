@@ -43,4 +43,7 @@ out/
 .idea_modules/
 *.iml
 *.ipr
+
 *.iws
+src/main/resources/application.properties
+
