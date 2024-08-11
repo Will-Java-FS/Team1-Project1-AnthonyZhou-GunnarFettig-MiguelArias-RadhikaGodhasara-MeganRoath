@@ -1,6 +1,5 @@
 package com.revature.controllers;
 
-
 import com.revature.models.UserModel;
 import com.revature.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
