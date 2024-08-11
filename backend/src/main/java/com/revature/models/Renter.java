@@ -1,18 +1,40 @@
-package Models;
+package com.revature.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name= "renters")
-public class Renter extends UserModel {
+@Table(name = "renters")
+public class Renter {
+
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+        private Long id;  // Updated to Long to match BIGINT in the database
 
-        // not sure if this is how we want to implement it.
-        @OneToOne(fetch = FetchType.EAGER)
-        @JoinColumn(name = "user_id")
-        @JsonManagedReference
+        @ManyToOne
+        @JoinColumn(name = "user_id", nullable = false)
         private UserModel user;
+
+        // Constructors
+        public Renter() {}
+
+        public Renter(UserModel user) {
+                this.user = user;
+        }
+
+        // Getters and Setters
+        public Long getId() {
+                return id;
+        }
+
+        public void setId(Long id) {
+                this.id = id;
+        }
+
+        public UserModel getUser() {
+                return user;
+        }
+
+        public void setUser(UserModel user) {
+                this.user = user;
+        }
 }
