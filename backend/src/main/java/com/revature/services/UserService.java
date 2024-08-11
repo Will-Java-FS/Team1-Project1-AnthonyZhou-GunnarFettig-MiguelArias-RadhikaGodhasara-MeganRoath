@@ -1,4 +1,4 @@
-package Services;
+package com.revature.services;
 
 public class UserService {
 }
