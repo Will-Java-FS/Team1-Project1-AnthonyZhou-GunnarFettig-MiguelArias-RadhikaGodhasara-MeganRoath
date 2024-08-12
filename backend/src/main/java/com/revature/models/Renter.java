@@ -12,12 +12,12 @@ public class Renter {
 
         @ManyToOne
         @JoinColumn(name = "user_id", nullable = false)
-        private UserModel user;
+        private User user;
 
         // Constructors
         public Renter() {}
 
-        public Renter(UserModel user) {
+        public Renter(User user) {
                 this.user = user;
         }
 
@@ -30,11 +30,11 @@ public class Renter {
                 this.id = id;
         }
 
-        public UserModel getUser() {
+        public User getUser() {
                 return user;
         }
 
-        public void setUser(UserModel user) {
+        public void setUser(User user) {
                 this.user = user;
         }
 }

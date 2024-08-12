@@ -14,12 +14,12 @@ public class Owner {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private UserModel user;
+    private User user;
 
     // Constructors
     public Owner() {}
 
-    public Owner(UserModel user) {
+    public Owner(User user) {
         this.user = user;
     }
 
@@ -32,11 +32,11 @@ public class Owner {
         this.id = id;
     }
 
-    public UserModel getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserModel user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

@@ -26,6 +26,9 @@ public class User {
     @Column(length = 50)
     private String lastName;
 
+    @Column(length = 50)
+    private String role;
+
     // Constructors
     public User() {}
 
