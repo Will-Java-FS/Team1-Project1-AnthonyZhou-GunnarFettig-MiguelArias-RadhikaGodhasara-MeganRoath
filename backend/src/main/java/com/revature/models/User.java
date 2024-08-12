@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class UserModel {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +27,9 @@ public class UserModel {
     private String lastName;
 
     // Constructors
-    public UserModel() {}
+    public User() {}
 
-    public UserModel(String username, String email, String passwordHash, String firstName, String lastName) {
+    public User(String username, String email, String passwordHash, String firstName, String lastName) {
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;

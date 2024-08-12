@@ -1,10 +1,10 @@
 package com.revature.services;
 
 
-import com.revature.models.UserModel;
+import com.revature.models.User;
 import com.revature.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
+//import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,9 +20,9 @@ public class UserModelDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserModel> user = userRepo.findByUsername(username);
+        Optional<User> user = userRepo.findByUsername(username);
         if (user.isPresent()) {
-            return User.builder()
+            return org.springframework.security.core.userdetails.User.builder()
                     .username(user.get().getUsername())
                     .password(user.get().getPasswordHash()) // Assuming passwordHash contains the hashed password
                     .build();
