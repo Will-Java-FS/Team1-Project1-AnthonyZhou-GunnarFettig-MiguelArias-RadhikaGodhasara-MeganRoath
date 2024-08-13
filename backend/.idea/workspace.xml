@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db17df3f-fc84-491c-bdcf-9cacf4a74275" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="db17df3f-fc84-491c-bdcf-9cacf4a74275" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,7 +36,6 @@
     "Application.Project1Application.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "miguel",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "/Users/miguelarias/Revature/Team1-Project1-AnthonyZhou-GunnarFettig-MiguelArias-RadhikaGodhasara-MeganRoath/backend/src/main/java",
     "last_opened_file_path": "/Users/miguelarias/Revature/Team1-Project1-AnthonyZhou-GunnarFettig-MiguelArias-RadhikaGodhasara-MeganRoath/backend",

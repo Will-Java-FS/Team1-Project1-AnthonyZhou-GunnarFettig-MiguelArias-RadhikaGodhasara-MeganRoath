@@ -1,0 +1,230 @@
+Index: src/main/java/com/revature/controllers/ContentController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.revature.controllers;\n\n\nimport org.springframework.stereotype.Controller;\nimport org.springframework.web.bind.annotation.GetMapping;\n\n@Controller\npublic class ContentController {\n\n\n\n    @GetMapping(\"/home\")\n    public String handleHome(){\n        return \"home\";\n    }\n    @GetMapping(\"/admin/home\")\n    public String handleAdmin(){\n        return \"admin-home\";\n    }\n    @GetMapping(\"/user/home\")\n    public String handleUser(){\n        return \"user-home\";\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/revature/controllers/ContentController.java b/src/main/java/com/revature/controllers/ContentController.java
+--- a/src/main/java/com/revature/controllers/ContentController.java	(revision ddcca4a0e6bccfad77195916031a6ae5aaa1f081)
++++ b/src/main/java/com/revature/controllers/ContentController.java	(date 1723575117353)
+@@ -20,6 +20,4 @@
+     @GetMapping("/user/home")
+     public String handleUser(){
+         return "user-home";
+-    }
+-
+-}
++    }
+\ No newline at end of file
+Index: src/main/java/com/revature/controllers/UserController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.revature.controllers;\n\n\nimport com.revature.models.UserModel;\nimport com.revature.repositories.UserRepo;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.security.crypto.password.PasswordEncoder;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.RequestBody;\nimport org.springframework.web.bind.annotation.RestController;\n\n@RestController\npublic class UserController {\n\n    @Autowired\n    private UserRepo userRepo;\n    @Autowired\n    private PasswordEncoder passwordEncoder;\n\n    @PostMapping(\"/register\")\n    public UserModel registerUser(@RequestBody UserModel userModel){\n        userModel.setPasswordHash(passwordEncoder.encode(userModel.getPasswordHash()));\n        return userRepo.save(userModel);\n    }\n\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/revature/controllers/UserController.java b/src/main/java/com/revature/controllers/UserController.java
+--- a/src/main/java/com/revature/controllers/UserController.java	(revision ddcca4a0e6bccfad77195916031a6ae5aaa1f081)
++++ b/src/main/java/com/revature/controllers/UserController.java	(date 1723575117353)
+@@ -1,6 +1,5 @@
+ package com.revature.controllers;
+ 
+-
+ import com.revature.models.UserModel;
+ import com.revature.repositories.UserRepo;
+ import org.springframework.beans.factory.annotation.Autowired;
+Index: .gitignore
+===================================================================
+diff --git a/.gitignore b/.gitignore
+deleted file mode 100644
+--- a/.gitignore	(revision ddcca4a0e6bccfad77195916031a6ae5aaa1f081)
++++ /dev/null	(revision ddcca4a0e6bccfad77195916031a6ae5aaa1f081)
+@@ -1,49 +0,0 @@
+-##############################
+-## Java
+-##############################
+-.mtj.tmp/
+-*.class
+-*.jar
+-*.war
+-*.ear
+-*.nar
+-hs_err_pid*
+-replay_pid*
+-
+-##############################
+-## Maven
+-##############################
+-target/
+-pom.xml.tag
+-pom.xml.releaseBackup
+-pom.xml.versionsBackup
+-pom.xml.next
+-pom.xml.bak
+-release.properties
+-dependency-reduced-pom.xml
+-buildNumber.properties
+-.mvn/timing.properties
+-.mvn/wrapper/maven-wrapper.jar
+-
+-##############################
+-## Gradle
+-##############################
+-bin/
+-build/
+-.gradle
+-.gradletasknamecache
+-gradle-app.setting
+-!gradle-wrapper.jar
+-
+-##############################
+-## IntelliJ
+-##############################
+-out/
+-../.idea/
+-.idea_modules/
+-*.iml
+-*.ipr
+-
+-*.iws
+-src/main/resources/application.properties
+-
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"CompilerConfiguration\">\n    <annotationProcessing>\n      <profile default=\"true\" name=\"Default\" enabled=\"true\" />\n      <profile name=\"Maven default annotation processors profile\" enabled=\"true\">\n        <sourceOutputDir name=\"target/generated-sources/annotations\" />\n        <sourceTestOutputDir name=\"target/generated-test-sources/test-annotations\" />\n        <outputRelativeToContentRoot value=\"true\" />\n        <module name=\"project1\" />\n      </profile>\n    </annotationProcessing>\n  </component>\n  <component name=\"JavacSettings\">\n    <option name=\"ADDITIONAL_OPTIONS_OVERRIDE\">\n      <module name=\"project1\" options=\"-parameters\" />\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+--- a/.idea/compiler.xml	(revision ddcca4a0e6bccfad77195916031a6ae5aaa1f081)
++++ b/.idea/compiler.xml	(date 1723575117351)
+@@ -3,6 +3,7 @@
+   <component name="CompilerConfiguration">
+     <annotationProcessing>
+       <profile default="true" name="Default" enabled="true" />
++
+       <profile name="Maven default annotation processors profile" enabled="true">
+         <sourceOutputDir name="target/generated-sources/annotations" />
+         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\n  <component name=\"MavenProjectsManager\">\n    <option name=\"originalFiles\">\n      <list>\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"corretto-17\" project-jdk-type=\"JavaSDK\" />\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision ddcca4a0e6bccfad77195916031a6ae5aaa1f081)
++++ b/.idea/misc.xml	(date 1723575117352)
+@@ -8,5 +8,7 @@
+       </list>
+     </option>
+   </component>
++
+   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="corretto-17" project-jdk-type="JavaSDK" />
++
+ </project>
+\ No newline at end of file
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n\txsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\n\t<modelVersion>4.0.0</modelVersion>\n\t<parent>\n\t\t<groupId>org.springframework.boot</groupId>\n\t\t<artifactId>spring-boot-starter-parent</artifactId>\n\t\t<version>3.3.2</version>\n\t\t<relativePath/> <!-- lookup parent from repository -->\n\t</parent>\n\t<groupId>com.revature</groupId>\n\t<artifactId>project1</artifactId>\n\t<version>0.0.1-SNAPSHOT</version>\n\t<name>project1</name>\n\t<description>Java Full Stack React Project 1 </description>\n\t<url/>\n\t<licenses>\n\t\t<license/>\n\t</licenses>\n\t<developers>\n\t\t<developer/>\n\t</developers>\n\t<scm>\n\t\t<connection/>\n\t\t<developerConnection/>\n\t\t<tag/>\n\t\t<url/>\n\t</scm>\n\t<properties>\n\t\t<java.version>17</java.version>\n\t</properties>\n\t<dependencies>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework.boot</groupId>\n\t\t\t<artifactId>spring-boot-starter-actuator</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework.boot</groupId>\n\t\t\t<artifactId>spring-boot-starter-data-jpa</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework.boot</groupId>\n\t\t\t<artifactId>spring-boot-starter-web</artifactId>\n\t\t</dependency>\n\n\t\t<dependency>\n\t\t\t<groupId>org.springframework.boot</groupId>\n\t\t\t<artifactId>spring-boot-devtools</artifactId>\n\t\t\t<scope>runtime</scope>\n\t\t\t<optional>true</optional>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.postgresql</groupId>\n\t\t\t<artifactId>postgresql</artifactId>\n\t\t\t<scope>runtime</scope>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.projectlombok</groupId>\n\t\t\t<artifactId>lombok</artifactId>\n\t\t\t<optional>true</optional>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework.boot</groupId>\n\t\t\t<artifactId>spring-boot-starter-test</artifactId>\n\t\t\t<scope>test</scope>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework.boot</groupId>\n\t\t\t<artifactId>spring-boot-starter-thymeleaf</artifactId>\n\t\t</dependency>\n\t\t<dependency>\n\t\t\t<groupId>org.springframework.boot</groupId>\n\t\t\t<artifactId>spring-boot-starter-security</artifactId>\n\t\t</dependency>\n\n\t</dependencies>\n\n\t<build>\n\t\t<plugins>\n\t\t\t<plugin>\n\t\t\t\t<groupId>org.springframework.boot</groupId>\n\t\t\t\t<artifactId>spring-boot-maven-plugin</artifactId>\n\t\t\t\t<configuration>\n\t\t\t\t\t<excludes>\n\t\t\t\t\t\t<exclude>\n\t\t\t\t\t\t\t<groupId>org.projectlombok</groupId>\n\t\t\t\t\t\t\t<artifactId>lombok</artifactId>\n\t\t\t\t\t\t</exclude>\n\t\t\t\t\t</excludes>\n\t\t\t\t</configuration>\n\t\t\t</plugin>\n\t\t</plugins>\n\t</build>\n\n</project>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision ddcca4a0e6bccfad77195916031a6ae5aaa1f081)
++++ b/pom.xml	(date 1723575117353)
+@@ -67,10 +67,12 @@
+ 		<dependency>
+ 			<groupId>org.springframework.boot</groupId>
+ 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
++
+ 		</dependency>
+ 		<dependency>
+ 			<groupId>org.springframework.boot</groupId>
+ 			<artifactId>spring-boot-starter-security</artifactId>
++
+ 		</dependency>
+ 
+ 	</dependencies>
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jarRepositories.xml b/.idea/jarRepositories.xml
+new file mode 100644
+--- /dev/null	(date 1723575117352)
++++ b/.idea/jarRepositories.xml	(date 1723575117352)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RemoteRepositoriesConfiguration">
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Central Repository" />
++      <option name="url" value="https://repo.maven.apache.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Maven Central repository" />
++      <option name="url" value="https://repo1.maven.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="jboss.community" />
++      <option name="name" value="JBoss Community repository" />
++      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
++    </remote-repository>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/encodings.xml b/.idea/encodings.xml
+new file mode 100644
+--- /dev/null	(date 1723575117351)
++++ b/.idea/encodings.xml	(date 1723575117351)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Encoding">
++    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1723575117352)
++++ b/.idea/vcs.xml	(date 1723575117352)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1723575117351)
++++ b/.idea/.gitignore	(date 1723575117351)
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
