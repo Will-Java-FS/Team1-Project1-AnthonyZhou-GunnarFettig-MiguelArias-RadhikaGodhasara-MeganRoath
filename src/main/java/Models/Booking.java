@@ -17,12 +17,11 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Integer booking_id;
+    private Long booking_id;
     @Column
-    private Integer property_id;
+    private Long property_id;
     @Column
-    private Integer guest_id;
-    //Going off sql query; however I thought we wanted this to be a range?
+    private Long guest_id;
     @Column
     private LocalDate start_date;
     @Column
@@ -40,8 +39,6 @@ public class Booking {
     }
 
     /* NEED to reference renter's id
-        Also for some reason this confuses me
-        ManyToOne or ManyToMany?? idk
 
     //Reference properties id
     @ManyToOne(fetch = FetchType.EAGER)
