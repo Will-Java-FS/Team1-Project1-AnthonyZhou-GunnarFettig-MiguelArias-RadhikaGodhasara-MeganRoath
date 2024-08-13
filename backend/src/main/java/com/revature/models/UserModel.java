@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,14 +30,15 @@ public class User {
     private String role;
 
     // Constructors
-    public User() {}
+    public UserModel() {}
 
-    public User(String username, String email, String passwordHash, String firstName, String lastName) {
+    public UserModel(String username, String email, String passwordHash, String firstName, String lastName, String role) {
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.role = role;
     }
 
     // Getters and Setters

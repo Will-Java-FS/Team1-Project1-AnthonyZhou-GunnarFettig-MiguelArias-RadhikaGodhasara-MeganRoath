@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "owners")
-public class Owner {
+public class OwnerModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,12 +14,12 @@ public class Owner {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private UserModel user;
 
     // Constructors
-    public Owner() {}
+    public OwnerModel() {}
 
-    public Owner(User user) {
+    public OwnerModel(UserModel user) {
         this.user = user;
     }
 
@@ -32,11 +32,11 @@ public class Owner {
         this.id = id;
     }
 
-    public User getUser() {
+    public UserModel getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserModel user) {
         this.user = user;
     }
 }
