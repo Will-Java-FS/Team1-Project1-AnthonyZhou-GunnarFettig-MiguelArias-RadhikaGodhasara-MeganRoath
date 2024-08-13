@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
-import com.revature.models.User;
+
+import com.revature.models.UserModel;
 import com.revature.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,9 +18,9 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody User user){
-        user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
-        return userRepo.save(user);
+    public UserModel registerUser(@RequestBody UserModel userModel){
+        userModel.setPasswordHash(passwordEncoder.encode(userModel.getPasswordHash()));
+        return userRepo.save(userModel);
     }
 
 
