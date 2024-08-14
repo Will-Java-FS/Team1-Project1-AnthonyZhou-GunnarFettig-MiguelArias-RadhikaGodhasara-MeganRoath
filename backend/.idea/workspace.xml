@@ -4,6 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
+    <list default="true" id="db17df3f-fc84-491c-bdcf-9cacf4a74275" name="Changes" comment="" />
+
     <list default="true" id="db17df3f-fc84-491c-bdcf-9cacf4a74275" name="Changes" comment="Fixed a few things with UserModel -&gt; User. Changed User to include a role property.">
       <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/models/RenterModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -16,6 +19,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/services/UserModelDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/services/UserModelDetailService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +49,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Project1Application.executor": "Run",
+    "JUnit.JwtSecretMakerTest.generateSecretKey.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "/Users/miguelarias/Revature/Team1-Project1-AnthonyZhou-GunnarFettig-MiguelArias-RadhikaGodhasara-MeganRoath/backend/src/main/java",
+    "last_opened_file_path": "/Users/miguelarias/Revature/Team1-Project1-AnthonyZhou-GunnarFettig-MiguelArias-RadhikaGodhasara-MeganRoath/backend",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Project1Application.executor&quot;: &quot;Run&quot;,
@@ -58,6 +76,7 @@
     &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+
   }
 }</component>
   <component name="RecentsManager">
@@ -65,20 +84,56 @@
       <recent name="com.revature" />
     </key>
   </component>
+
+  <component name="RunManager" selected="Application.Project1Application">
+    <configuration name="Project1Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.revature.Project1Application" />
+      <module name="project1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.revature.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="backend" />
+
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
+    <configuration name="JwtSecretMakerTest.generateSecretKey" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.revature.project1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.revature.project1" />
+      <option name="MAIN_CLASS_NAME" value="com.revature.project1.JwtSecretMakerTest" />
+      <option name="METHOD_NAME" value="generateSecretKey" />
+      <option name="TEST_OBJECT" value="method" />
+
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="backend" />
       <option name="filePath" />
+
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Project1Application" />
+        <item itemvalue="JUnit.JwtSecretMakerTest.generateSecretKey" />
+      </list>
+    </recent_temporary>
+
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
