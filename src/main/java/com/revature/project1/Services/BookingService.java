@@ -1,12 +1,9 @@
-package Services;
-import Models.Booking;
-import Repositories.BookingRepo;
+package com.revature.project1.Services;
+import com.revature.project1.Models.Booking;
+import com.revature.project1.Repositories.BookingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
-import java.awt.print.Book;
-import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,14 +11,14 @@ import java.util.Optional;
 public class BookingService {
     // Most likely need property repo/service
     @Autowired
-    BookingRepo bookingRepo;
+    private BookingRepo bookingRepo;
 
-    /*
-    @Autowired
+
+    //@Autowired
     public BookingService(BookingRepo bookingRepo){
         this.bookingRepo = bookingRepo;
     }
-    */
+
 
     //needs to throw exceptions if outside of date range
     //throw exception if property is already booked
@@ -62,7 +59,7 @@ public class BookingService {
 
     //I don't think I actually need this lol
     public Booking getBookingByProperty(Long property_id){
-        Optional<Booking> optionalBooking = bookingRepo.findByProperty_id(property_id);
+        Optional<Booking> optionalBooking = bookingRepo.findById(property_id);
         Booking booking = optionalBooking.get();
         return booking;
     }
@@ -78,7 +75,7 @@ public class BookingService {
      */
 
     public void deleteBooking(Long booking_id) {
-        Optional<Booking> optionalBooking = bookingRepo.findByProperty_id(booking_id);
+        Optional<Booking> optionalBooking = bookingRepo.findById(booking_id);
         if (optionalBooking.isPresent()) {
             optionalBooking.get().setStatus("cancelled");
             bookingRepo.deleteById(booking_id);

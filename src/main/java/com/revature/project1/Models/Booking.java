@@ -1,4 +1,4 @@
-package Models;
+package com.revature.project1.Models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -16,11 +16,11 @@ import java.time.LocalDate;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "id")
     private Long booking_id;
-    @Column
+    @Column(name = "property_id")
     private Long property_id;
-    @Column
+    @Column(name = "renter_id")
     private Long guest_id;
     @Column
     private LocalDate start_date;

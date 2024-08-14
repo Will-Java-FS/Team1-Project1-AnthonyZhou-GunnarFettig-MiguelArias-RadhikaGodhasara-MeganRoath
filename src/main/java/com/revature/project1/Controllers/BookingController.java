@@ -1,17 +1,18 @@
-package Controllers;
-import Models.Booking;
-import Services.BookingService;
+package com.revature.project1.Controllers;
+import com.revature.project1.Models.Booking;
+import com.revature.project1.Services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Book;
 import java.util.List;
 
 @RestController
 public class BookingController {
 
-    BookingService bookingService;
+    //@Autowired
+    private BookingService bookingService;
+
 
     @Autowired
     public BookingController(BookingService bookingService){
