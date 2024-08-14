@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "owners")
-public class Owner {
+public class OwnerModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +17,9 @@ public class Owner {
     private UserModel user;
 
     // Constructors
-    public Owner() {}
+    public OwnerModel() {}
 
-    public Owner(UserModel user) {
+    public OwnerModel(UserModel user) {
         this.user = user;
     }
 

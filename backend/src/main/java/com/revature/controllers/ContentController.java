@@ -21,5 +21,3 @@ public class ContentController {
     public String handleUser(){
         return "user-home";
     }
-
-}
