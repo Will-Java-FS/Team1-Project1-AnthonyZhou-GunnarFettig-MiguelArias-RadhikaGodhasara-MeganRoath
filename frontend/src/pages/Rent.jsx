@@ -21,7 +21,7 @@ export default function Rent() {
     if (AuthenticationService.isLoggedInRenter()) {
         const rentClicked = async (event) => {
             event.preventDefault();
-            await axios.patch("https://localhost:8000/bookings/" + window.location.pathname, {
+            await axios.patch("https://localhost:8080/bookings/" + window.location.pathname, {
                 username: AuthenticationService.loggedInUsername(),
                 startDate: document.getElementById("startDateNew").value,
                 endDate: document.getElementById("endDateNew").value,

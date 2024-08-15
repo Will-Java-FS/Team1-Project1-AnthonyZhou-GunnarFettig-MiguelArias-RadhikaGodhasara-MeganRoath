@@ -5,7 +5,7 @@ import AuthenticationService from "../components/AuthenticationService";
 export default function Login() {
     const loginClicked = async (event) => {
         event.preventDefault();
-        await axios.post("https://localhost:8000/login", {
+        await axios.post("https://localhost:8080/authenticate", {
                 username: document.getElementById("usernameLogin").value,
                 password: document.getElementById("passwordLogin").value
         })

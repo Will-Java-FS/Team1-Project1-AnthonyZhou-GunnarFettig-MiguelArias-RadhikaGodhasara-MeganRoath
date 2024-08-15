@@ -8,7 +8,7 @@ class AuthenticationService {
     loginOwner(username) {
         sessionStorage.setItem("authenticatedUser", username);
         sessionStorage.setItem("role", "Owner");
-    console.log("Successful login");
+        console.log("Successful login");
     }
   
     logout() {

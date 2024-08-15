@@ -6,7 +6,7 @@ import AuthenticationService from "../components/AuthenticationService";
 export default function Properties() {
     const [properties, setProperties] = useState();
     useEffect(async () => {
-        await axios.get("https://localhost:8000/properties")
+        await axios.get("https://localhost:8080/properties")
         .then(response => {
             console.log(response.data);
             if (response.ok) {
@@ -21,7 +21,7 @@ export default function Properties() {
     if (AuthenticationService.isLoggedInOwner()) {
         const newPropertyClicked = async (event) => {
             event.preventDefault();
-            await axios.post("https://localhost:8000/properties", {
+            await axios.post("https://localhost:8080/properties", {
                 ownerUsername: AuthenticationService.loggedInUsername(),
                 title: document.getElementById("titleNew").value,
                 description: document.getElementById("descriptionNew").value,
@@ -41,7 +41,7 @@ export default function Properties() {
         
         const deleteClicked = async (propertyId, event) => {
             event.preventDefault();
-            await axios.delete("https://localhost:8000/properties/" + propertyId)
+            await axios.delete("https://localhost:8080/properties/" + propertyId)
             .then(response => {
                 console.log(response.data);
                 if (response.ok) {

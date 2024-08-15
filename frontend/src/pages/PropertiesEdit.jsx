@@ -6,7 +6,7 @@ import AuthenticationService from "../components/AuthenticationService";
 export default function PropertiesEdit() {
     const [property, setProperty] = useState();
     useEffect(async () => {
-        await axios.get("https://localhost:8000/properties/" + window.location.pathname)
+        await axios.get("https://localhost:8080/properties/" + window.location.pathname)
         .then(response => {
             console.log(response.data);
             if (response.ok) {
@@ -21,7 +21,7 @@ export default function PropertiesEdit() {
     if (AuthenticationService.isLoggedInOwner()) {
         const updatePropertyClicked = async (event) => {
             event.preventDefault();
-            await axios.patch("https://localhost:8000/properties/" + window.location.pathname, {
+            await axios.patch("https://localhost:8080/properties/" + window.location.pathname, {
                 title: document.getElementById("titleUpdate").value,
                 description: document.getElementById("descriptionUpdate").value,
                 maxGuests: document.getElementById("maxGuestsUpdate").value,

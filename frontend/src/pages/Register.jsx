@@ -7,7 +7,7 @@ export default function Register() {
         var selectedRole = "Renter";
         if (document.getElementById("owner").checked) {selectedRole = "Owner";}
 
-        await axios.post("https://localhost:8000/register", {
+        await axios.post("https://localhost:8080/register", {
             username: document.getElementById("usernameRegister").value,
             password: document.getElementById("passwordRegister").value,
             role: selectedRole
