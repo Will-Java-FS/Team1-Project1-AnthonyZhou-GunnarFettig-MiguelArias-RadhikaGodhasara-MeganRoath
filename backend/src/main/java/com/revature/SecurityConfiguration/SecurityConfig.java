@@ -1,5 +1,6 @@
 package com.revature.SecurityConfiguration;
 
+import com.revature.WebToken.JwtAuthenticationFilter;
 import com.revature.services.UserModelDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -23,6 +25,8 @@ public class SecurityConfig {
 
     @Autowired
     private UserModelDetailService userDetailService;
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -33,6 +37,7 @@ public class SecurityConfig {
                     registry.anyRequest().authenticated();
                 })
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
    @Bean
