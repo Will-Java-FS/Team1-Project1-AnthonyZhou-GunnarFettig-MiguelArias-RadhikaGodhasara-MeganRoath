@@ -16,3 +16,27 @@ The Property Booking technology project entails developing a comprehensive full-
 - View a specific property for a user
 - Cancle/Delete a booking
 - Change/Update a booking
+
+- to register user
+- Post - http://localhost:8080/register
+- json body
+- {
+  "username": "username",
+  "email": "uniqueEmailHere@example.com",
+  "passwordHash": "yourPassword",
+  "firstName": "firstname",
+  "lastName": "Lastname"
+
+}
+
+- to login
+- Post http://localhost:8080/authenticate
+
+- json body
+- {
+  "username": "username",
+  "passwordHash": "password"
+
+}
+you should receive a bearer token in the responce, you can set it in postman and access other locked endpoints when set. 
+
