@@ -1,5 +1,6 @@
 package com.revature.WebToken;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,5 +36,27 @@ public class JwtService {
     private SecretKey generateKey(){
         byte[] decodedKey = Base64.getDecoder().decode(SECRET);
         return Keys.hmacShaKeyFor(decodedKey);
+    }
+
+    public String extractUsername(String jwt) {
+      Claims claims =  Jwts.parser()
+                .verifyWith(generateKey())
+                .build()
+                .parseSignedClaims(jwt)
+                .getPayload();
+      return claims.getSubject();
+    }
+
+    private Claims getCLaims(String jwt){
+        return Jwts.parser()
+                .verifyWith(generateKey())
+                .build()
+                .parseSignedClaims(jwt)
+                .getPayload();
+    }
+
+    public boolean isTokenValid(String jwt) {
+        Claims claims = getCLaims(jwt);
+        return claims.getExpiration().after(Date.from(Instant.now()));
     }
 }
