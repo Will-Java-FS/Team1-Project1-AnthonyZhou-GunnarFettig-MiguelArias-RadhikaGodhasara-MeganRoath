@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import com.revature.models.BookingsModel;
 import com.revature.models.RenterModel;
 import com.revature.models.UserModel;
 import com.revature.repositories.RenterRepo;
@@ -17,9 +18,9 @@ public class RenterServiceImpl implements RenterService{
         RenterModel renter = new RenterModel(user);
         return renterRepo.save(renter);
     }
-//    @Override
-//    public List<RenterModel> getBookings(long id){
-//        RenterModel renter = renterRepo.findById(id);
-//        return renter.getBookings();
-//    }
+    @Override
+    public List<BookingsModel> getBookings(long id){
+        RenterModel renter = renterRepo.findById(id).get();
+        return renter.getBookings();
+    }
 }
