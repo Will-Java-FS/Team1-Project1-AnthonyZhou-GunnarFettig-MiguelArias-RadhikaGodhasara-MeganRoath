@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db17df3f-fc84-491c-bdcf-9cacf4a74275" name="Changes" comment="Implemented a bit of the RenterModel Service layer.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/controllers/OwnerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/controllers/RenterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/models/BookingsModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/models/PropertiesModel.java" afterDir="false" />
+    <list default="true" id="db17df3f-fc84-491c-bdcf-9cacf4a74275" name="Changes" comment="Fixed a few things with UserModel -&gt; User. Changed User to include a role property.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/models/RenterModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/models/OwnerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/models/OwnerModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/models/RenterModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/models/RenterModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/services/RenterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/services/RenterService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/services/RenterServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/services/RenterServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/controllers/ContentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/controllers/ContentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/models/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/models/OwnerModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/models/Renter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/models/UserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/repositories/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/repositories/UserRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/services/UserModelDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/services/UserModelDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +24,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -105,23 +105,7 @@
       <option name="project" value="LOCAL" />
       <updated>1723496470537</updated>
     </task>
-    <task id="LOCAL-00003" summary="Refactored again back to _Model naming scheme. And database connection works on my machine.">
-      <option name="closed" value="true" />
-      <created>1723577646811</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1723577646811</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Implemented a bit of the RenterModel Service layer.">
-      <option name="closed" value="true" />
-      <created>1723580100790</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1723580100790</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -138,9 +122,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Renamed UserModel to User. I'm not sure what to change in the UserModelDetailService.java. Not entirely sure how the org.springframework.security.core.userdetails works." />
     <MESSAGE value="Fixed a few things with UserModel -&gt; User. Changed User to include a role property." />
-    <MESSAGE value="Refactored again back to _Model naming scheme. And database connection works on my machine." />
-    <MESSAGE value="Implemented a bit of the RenterModel Service layer." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented a bit of the RenterModel Service layer." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed a few things with UserModel -&gt; User. Changed User to include a role property." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
