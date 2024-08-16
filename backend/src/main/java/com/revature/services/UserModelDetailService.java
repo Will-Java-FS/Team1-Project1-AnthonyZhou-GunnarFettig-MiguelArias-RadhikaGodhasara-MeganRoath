@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service  // This annotation is crucial to make this class a Spring bean
 public class UserModelDetailService implements UserDetailsService {
 
-//    @Autowired
+    @Autowired
     private UserRepo userRepo;
 
     @Override

@@ -6,11 +6,56 @@ The Property Booking technology project entails developing a comprehensive full-
 - Create an account for renter
 - Create an account for owner
 - Log into the account
-- List a property for rent
+
+- List a property for rent 
+endpoint - post on "/properties"
+json body
+{
+    "ownerID": 1,
+    "address": "123 street address",
+    "city": "Bethelhem",
+    "state": "PA",
+    "zipcode": "28394",
+    "price": 99.99,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "numOfGuests": 2,
+    "available": true
+}
+
 - View all listed properties
-- View a specific property
-- Update a property
+endpoint - get on "/properties"
+
+- View a specific property by ID
+endpoint - get on "properties/{id}"
+
+- View list of properties by state
+endpoint - get on "/states/{state}"
+
+- View list of properties by city
+endpoint - get on "/cities/{city}"
+
+- View list of properties by zipcodes
+endpoint - get on "/zipcodes/{zipcode}"
+
+- Update a property by ID
+endpoint - patch on "properties/{id}"
+{
+    "ownerID": 1,
+    "address": "123 street address",
+    "city": "Bethelhem",
+    "state": "PA",
+    "zipcode": "28394",
+    "price": 99.99,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "numOfGuests": 2,
+    "available": true
+}
+
 - Delete a property
+endpoint - delete on "properties/{id}"
+
 - Create a booking
 - View all bookings for a user
 - View a specific property for a user

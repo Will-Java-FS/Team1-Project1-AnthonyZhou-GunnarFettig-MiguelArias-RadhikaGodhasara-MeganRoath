@@ -15,8 +15,8 @@ public class PropertyModel{
     private Long id;
 
     // @OneToMany(fetch = FetchType.EAGER)
-    // @Column(name = "owner_id")
-    // private Long ownerID;
+    @Column(name = "owner_id")
+    private Long ownerID;
 
     @Column(name = "address")
     private String address;

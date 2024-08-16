@@ -1,15 +1,15 @@
 package com.revature.controllers;
 
-import com.revature.services.OwnerService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+// import com.revature.services.OwnerService;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class OwnerController {
 
-    @Autowired
-    private OwnerService ownerService;
+    // @Autowired
+    // private OwnerService ownerService;
 
     // Register a new owner
     // Param will be an Owner JSON
