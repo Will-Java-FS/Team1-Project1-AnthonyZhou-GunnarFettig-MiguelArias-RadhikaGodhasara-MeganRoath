@@ -1,5 +1,5 @@
 package com.revature.project1.Services;
-import com.revature.project1.Models.Booking;
+import com.revature.project1.Models.BookingModel;
 import com.revature.project1.Repositories.BookingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,12 +22,12 @@ public class BookingService {
 
     //needs to throw exceptions if outside of date range
     //throw exception if property is already booked
-    public Booking addBooking(Booking booking) {
+    public BookingModel addBooking(BookingModel booking) {
         if((booking.getStatus().equals("confirmed")) || (booking.getEnd_date().isBefore(booking.getStart_date()))){
             return null;
         } else {
             Long attempt = booking.getBooking_id();
-            Optional<Booking> bookingAttempt = bookingRepo.findById(attempt);
+            Optional<BookingModel> bookingAttempt = bookingRepo.findById(attempt);
             booking.setStatus("confirmed");
             return bookingRepo.save(booking);
         }
@@ -37,7 +37,7 @@ public class BookingService {
     Admin access should allow all bookings associated w their properties
     User should return properties associated with them
      */
-    public List<Booking> getAllBookings() {
+    public List<BookingModel> getAllBookings() {
         return bookingRepo.findAll();
     }
 
@@ -58,9 +58,9 @@ public class BookingService {
      */
 
     //I don't think I actually need this lol
-    public Booking getBookingByProperty(Long property_id){
-        Optional<Booking> optionalBooking = bookingRepo.findById(property_id);
-        Booking booking = optionalBooking.get();
+    public BookingModel getBookingByProperty(Long property_id){
+        Optional<BookingModel> optionalBooking = bookingRepo.findById(property_id);
+        BookingModel booking = optionalBooking.get();
         return booking;
     }
 
@@ -75,7 +75,7 @@ public class BookingService {
      */
 
     public void deleteBooking(Long booking_id) {
-        Optional<Booking> optionalBooking = bookingRepo.findById(booking_id);
+        Optional<BookingModel> optionalBooking = bookingRepo.findById(booking_id);
         if (optionalBooking.isPresent()) {
             optionalBooking.get().setStatus("cancelled");
             bookingRepo.deleteById(booking_id);

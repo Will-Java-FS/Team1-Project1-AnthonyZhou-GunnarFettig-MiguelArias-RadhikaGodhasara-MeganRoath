@@ -1,6 +1,5 @@
 package com.revature.project1.Models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -13,7 +12,7 @@ import java.time.LocalDate;
 @Table(name = "bookings")
 @Getter
 @Setter
-public class Booking {
+public class BookingModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -28,6 +27,10 @@ public class Booking {
     private LocalDate end_date;
     @Column(nullable = false)
     private String status;
+
+    public BookingModel(){
+        //constructor
+    }
 
     @Override
     public String toString(){

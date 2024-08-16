@@ -1,16 +1,14 @@
 package com.revature.project1.Repositories;
 
-import com.revature.project1.Models.Booking;
+import com.revature.project1.Models.BookingModel;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BookingRepo extends JpaRepository<Booking, Long> {
-    Optional<Booking> findById(Long property_id);
+public interface BookingRepo extends JpaRepository<BookingModel, Long> {
+    Optional<BookingModel> findById(Long property_id);
 
     //Query to search properties by available guest amount
     /*

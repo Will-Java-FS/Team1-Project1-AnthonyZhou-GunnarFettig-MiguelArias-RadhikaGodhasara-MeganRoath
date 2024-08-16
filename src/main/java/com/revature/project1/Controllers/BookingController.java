@@ -1,5 +1,5 @@
 package com.revature.project1.Controllers;
-import com.revature.project1.Models.Booking;
+import com.revature.project1.Models.BookingModel;
 import com.revature.project1.Services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +25,10 @@ public class BookingController {
     }
 
     //Get all bookings that are available
+    //had to authorize for testing
     @GetMapping("/bookings")
-    public ResponseEntity<List<Booking>> getAllBookings(){
-        List<Booking> bookings = bookingService.getAllBookings();
+    public ResponseEntity<List<BookingModel>> getAllBookings(){
+        List<BookingModel> bookings = bookingService.getAllBookings();
         return ResponseEntity.status(200).body(bookings);
     }
     //Probably should get mapping by status
@@ -36,12 +37,12 @@ public class BookingController {
     Handler to book a listed property by property id
     */
     @PostMapping("/bookings")
-    public ResponseEntity<String> addBooking(@RequestParam Booking booking){
+    public ResponseEntity<String> addBooking(@RequestParam BookingModel booking){
         //Check if property is already booked for input dates
         if(booking.getStatus().equals("confirmed")){
             return ResponseEntity.status(400).body("Booking details unavailable.");
         } else {
-            Booking booked = bookingService.addBooking(booking);
+            BookingModel booked = bookingService.addBooking(booking);
 
             return ResponseEntity.status(200).body("Booking successful for:" + booked.toString());
         }
@@ -60,7 +61,7 @@ public class BookingController {
      */
 
     @DeleteMapping("/bookings")
-    public ResponseEntity<String> deleteBooking(@RequestParam Booking booking){
+    public ResponseEntity<String> deleteBooking(@RequestParam BookingModel booking){
         if(booking.getStatus().equals("cancelled")){
             return ResponseEntity.status(409).body("Booking was previously cancelled.");
         } else {
