@@ -7,17 +7,18 @@ import org.springframework.web.bind.annotation.*;
 public class ContentController {
 
 
-
     @GetMapping("/home")
-    public String handleHome(){
+    public String handleHome() {
         return "home";
     }
+
     @GetMapping("/admin/home")
-    public String handleAdmin(){
+    public String handleAdmin() {
         return "admin-home";
     }
+
     @GetMapping("/user/home")
-    public String handleUser(){
+    public String handleUser() {
         return "user-home";
     }
 }

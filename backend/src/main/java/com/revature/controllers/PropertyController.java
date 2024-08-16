@@ -1,11 +1,10 @@
 package com.revature.controllers;
 
+import com.revature.models.PropertyModel;
+import com.revature.services.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.revature.models.PropertyModel;
-import com.revature.services.PropertyService;
 
 import java.util.List;
 import java.util.Optional;
