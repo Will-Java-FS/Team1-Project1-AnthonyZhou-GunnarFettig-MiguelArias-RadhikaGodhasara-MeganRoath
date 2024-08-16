@@ -46,4 +46,5 @@ out/
 
 *.iws
 src/main/resources/application.properties
+.idea/workspace.xml
 
