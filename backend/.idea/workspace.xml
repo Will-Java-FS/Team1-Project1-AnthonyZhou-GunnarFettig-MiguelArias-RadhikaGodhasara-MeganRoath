@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db17df3f-fc84-491c-bdcf-9cacf4a74275" name="Changes" comment="Fixed a few things with UserModel -&gt; User. Changed User to include a role property.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/models/RenterModel.java" afterDir="false" />
+    <list default="true" id="db17df3f-fc84-491c-bdcf-9cacf4a74275" name="Changes" comment="Seems to be a working version">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_13_24__14_53__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_13_24__14_53__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/controllers/ContentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/controllers/ContentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/models/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/models/OwnerModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/models/Renter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/models/UserModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/repositories/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/repositories/UserRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/services/UserModelDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/services/UserModelDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +99,31 @@
       <option name="project" value="LOCAL" />
       <updated>1723496470537</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added owner and renter service and controller implementation. Commented some things out where I needed BookingModel and PropertyModel">
+      <option name="closed" value="true" />
+      <created>1723751255352</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1723751255352</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Changed a few @Autowires in the SecurityConfig, and changed a lot regarding the Models and the connection between them all. Current error is:  A UserDetailsService must be set.">
+      <option name="closed" value="true" />
+      <created>1723821921885</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1723821921885</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Seems to be a working version">
+      <option name="closed" value="true" />
+      <created>1723822350178</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1723822350178</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -122,17 +140,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Renamed UserModel to User. I'm not sure what to change in the UserModelDetailService.java. Not entirely sure how the org.springframework.security.core.userdetails works." />
     <MESSAGE value="Fixed a few things with UserModel -&gt; User. Changed User to include a role property." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed a few things with UserModel -&gt; User. Changed User to include a role property." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/revature/services/UserModelDetailService.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Added owner and renter service and controller implementation. Commented some things out where I needed BookingModel and PropertyModel" />
+    <MESSAGE value="Changed a few @Autowires in the SecurityConfig, and changed a lot regarding the Models and the connection between them all. Current error is:  A UserDetailsService must be set." />
+    <MESSAGE value="Seems to be a working version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Seems to be a working version" />
   </component>
 </project>
