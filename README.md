@@ -8,20 +8,20 @@ The Property Booking technology project entails developing a comprehensive full-
 - Log into the account
 
 - List a property for rent 
-endpoint - post on "/properties"
-json body
-{
-    "ownerID": 1,
-    "address": "123 street address",
-    "city": "Bethelhem",
-    "state": "PA",
-    "zipcode": "28394",
-    "price": 99.99,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "numOfGuests": 2,
-    "available": true
-}
+    endpoint - post on "/properties"
+    json body
+    {
+      "ownerID": 1,
+      "address": "123 street address",
+      "city": "Bethelhem",
+      "state": "PA",
+      "zipcode": "28394",
+      "price": 99.99,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "numOfGuests": 2,
+      "available": true
+    }
 
 - View all listed properties
 endpoint - get on "/properties"
