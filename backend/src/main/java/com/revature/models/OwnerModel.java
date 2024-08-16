@@ -1,7 +1,6 @@
 package com.revature.models;
 
 
-import ch.qos.logback.core.model.PropertyModel;
 import jakarta.persistence.*;
 
 import java.util.List;

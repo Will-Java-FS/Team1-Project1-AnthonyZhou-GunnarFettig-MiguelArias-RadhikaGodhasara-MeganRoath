@@ -19,7 +19,7 @@ public class RenterModel {
 
     @OneToMany
     @JoinColumn(name = "renter_id")
-    private List<BookingsModel> bookings;
+    private List<BookingModel> bookings;
 
     // Constructors
     public RenterModel() {}
@@ -45,7 +45,7 @@ public class RenterModel {
         this.user = user;
     }
 
-    public List<BookingsModel> getBookings() {
+    public List<BookingModel> getBookings() {
         return bookings;
     }
 

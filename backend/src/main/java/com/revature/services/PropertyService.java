@@ -1,15 +1,13 @@
-// package com.revature.Service;
+package com.revature.services;
 
 // public class PropertyService {
     
 // }
 
-package com.revature.Service;
-
+import com.revature.models.PropertyModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.Model.PropertyModel;
 import com.revature.Respository.PropertyRepo;
 
 import java.util.List;

@@ -20,9 +20,9 @@ public class RenterController {
     }
 
     // Get bookings for a specific renter
-    @GetMapping("/{renterId}/bookings")
-    public ResponseEntity<List<BookingModel>> getBookingsForRenter(@PathVariable Long renterId) {
-        List<BookingModel> bookings = renterService.getBookingsForRenter(renterId);
-        return ResponseEntity.ok(bookings);
-    }
+//    @GetMapping("/{renterId}/bookings")
+//    public ResponseEntity<List<BookingModel>> getBookingsForRenter(@PathVariable Long renterId) {
+//        List<BookingModel> bookings = renterService.getBookingsForRenter(renterId);
+//        return ResponseEntity.ok(bookings);
+//    }
 }
