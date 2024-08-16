@@ -1,7 +1,10 @@
 package com.revature.models;
 
 
+import ch.qos.logback.core.model.PropertyModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 
 @Entity
@@ -12,9 +15,14 @@ public class OwnerModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;  // Updated to Long to match BIGINT in the database
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserModel user;
+
+    @OneToMany
+    @JoinColumn(name = "owner_id")
+    private List<PropertyModel> properties;
+
 
     // Constructors
     public OwnerModel() {}
