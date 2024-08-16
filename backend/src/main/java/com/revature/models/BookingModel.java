@@ -1,6 +1,5 @@
 package com.revature.models;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;

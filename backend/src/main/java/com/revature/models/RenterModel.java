@@ -2,6 +2,8 @@ package com.revature.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "renters")
 public class RenterModel {
@@ -10,9 +12,14 @@ public class RenterModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;  // Updated to Long to match BIGINT in the database
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserModel user;
+
+
+    @OneToMany
+    @JoinColumn(name = "renter_id")
+    private List<BookingModel> bookings;
 
     // Constructors
     public RenterModel() {}
@@ -37,4 +44,9 @@ public class RenterModel {
     public void setUser(UserModel user) {
         this.user = user;
     }
+
+    public List<BookingModel> getBookings() {
+        return bookings;
+    }
+
 }

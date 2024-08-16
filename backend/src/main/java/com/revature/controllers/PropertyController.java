@@ -28,7 +28,7 @@ public class PropertyController {
     public ResponseEntity<PropertyModel> getPropertyById(@PathVariable Long id) {
         Optional<PropertyModel> property = propertyService.getPropertyById(id);
         return property.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+                       .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/properties")

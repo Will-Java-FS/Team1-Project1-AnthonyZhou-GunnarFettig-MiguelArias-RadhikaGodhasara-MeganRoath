@@ -1,4 +1,5 @@
 package com.revature.services;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class PropertyService {
     @Autowired
     private PropertyRepo propertyRepo;
 
-    public PropertyService(PropertyRepo propertyRepo) {
+    public PropertyService (PropertyRepo propertyRepo){
         this.propertyRepo = propertyRepo;
     }
 
@@ -57,5 +58,4 @@ public class PropertyService {
     public List<PropertyModel> getPropertiesByZipcode(String zipcode) {
         return propertyRepo.findByZipcode(zipcode);
     }
-
 }

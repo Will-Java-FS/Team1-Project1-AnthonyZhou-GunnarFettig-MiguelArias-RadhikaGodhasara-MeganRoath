@@ -8,46 +8,46 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PropertyModel {
+public class PropertyModel{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "owner_id", nullable = false)
-    private OwnerModel ownerModel;
+    // @OneToMany(fetch = FetchType.EAGER)
+    // @Column(name = "owner_id")
+    // private Long ownerID;
 
-    @Column(name = "address", nullable = false)
+    @Column(name = "address")
     private String address;
 
-    @Column(name = "city", nullable = false)
+    @Column(name = "city")
     private String city;
 
-    @Column(name = "state", nullable = false)
+    @Column(name = "state")
     private String state;
 
-    @Column(name = "zipcode", nullable = false)
+    @Column(name = "zipcode")
     private String zipcode;
 
-    @Column(name = "description", columnDefinition = "TEXT")
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "price", nullable = false)
+    @Column(name = "price")
     private Double price;
 
-    @Column(name = "bedrooms", nullable = false)
+    @Column(name = "bedrooms")
     private Long bedrooms;
 
-    @Column(name = "bathrooms", nullable = false)
+    @Column(name = "bathrooms")
     private Long bathrooms;
 
-    @Column(name = "num_of_guests", nullable = false)
-    private Long num_of_guests;
+    @Column(name = "num_of_guests")
+    private Long numOfGuests;
 
     @Column(name = "pets")
     private Boolean pets;
 
-    @Column(name = "available", nullable = false)
+    @Column(name = "available")
     private Boolean available;
 }
