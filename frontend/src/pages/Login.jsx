@@ -4,11 +4,14 @@ import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
 export default function Login() {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+
     const loginClicked = async (event) => {
         event.preventDefault();
         await axios.post("https://localhost:8080/authenticate", {
-                username: document.getElementById("usernameLogin").value,
-                password: document.getElementById("passwordLogin").value
+                username: username,
+                password: password
         })
         .then(response => {
             if (response.ok) {
@@ -28,11 +31,11 @@ export default function Login() {
         <form>
             <FormControl isRequired>
                 <FormLabel>Username</FormLabel>
-                <Input type = "text" placeholder = "Enter Username" id = "usernameLogin" />
+                <Input type = "text" placeholder = "Enter Username" onChange={event => setUsername(event.currentTarget.value)} />
             </FormControl>
             <FormControl isRequired>
                 <FormLabel>Password</FormLabel>
-                <Input type = "password" placeholder = "Enter Password" id = "passwordLogin" />
+                <Input type = "password" placeholder = "Enter Password" onChange={event => setPassword(event.currentTarget.value)} />
             </FormControl>
                 <Button type = "submit" onClick = {loginClicked}>Login</Button>
                 <ChakraLink as={ReactRouterLink} to="/register">Dont have an account? Sign up here.</ChakraLink>
