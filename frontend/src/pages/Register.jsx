@@ -1,4 +1,5 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link as ReactRouterLink, Navigate } from "react-router-dom";
+import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Input, Button, Radio, RadioGroup, HStack } from '@chakra-ui/react'
 import axios from "axios";
 
 export default function Register() {
@@ -26,24 +27,26 @@ export default function Register() {
     // TODO: If submit fails show message and/or change colors, etc
     // TODO: add password restrictions
     return (
-        <form id = "userRegister">
-            <p>I am looking to:</p>
-            <input type = "radio" id = "renter" name = "user_type" value = "Renter" required />
-            <label for = "renter">Rent a property</label><br/>
-            <input type = "radio" id = "owner" name = "user_type" value = "Owner" required />
-            <label for = "owner">List my property</label><br/>
-            <br/>
-            <label for = "username"><b>Username</b></label>
-            <br/>
-            <input type = "text" placeholder = "Enter Username" id = "usernameRegister" name = "username" required />
-            <br/>
-            <label for = "password"><b>Password</b></label>
-            <br/>
-            <input type = "password" placeholder = "Enter Password" id = "passwordRegister" name = "password" required /> 
-            <br/>
-            <button type = "submit" onClick = {registerClicked}>Register</button>
-            <br/>
-            <Link to = "/login">Already have an account? Login here.</Link>
+        <form>
+            <FormControl isRequired>
+                <FormLabel>I am looking to:</FormLabel>
+                <RadioGroup defaultValue = "Renter">
+                    <HStack spacing = '20px'>
+                        <Radio value = 'Renter' id = "renter">Rent a property</Radio>
+                        <Radio value = 'Owner' id = "owner">Rent a property</Radio>
+                    </HStack>
+                </RadioGroup>
+            </FormControl>
+            <FormControl isRequired>
+                <FormLabel>Username</FormLabel>
+                <Input type = "text" placeholder = "Enter Username" id = "usernameRegister" />
+            </FormControl>
+            <FormControl isRequired>
+                <FormLabel>Password</FormLabel>
+                <Input type = "password" placeholder = "Enter Password" id = "passwordRegister" /> 
+            </FormControl>
+            <Button type = "submit" onClick = {registerClicked}>Register</Button>
+            <ChakraLink as = {ReactRouterLink} to = "/login">Already have an account? Login here.</ChakraLink>
         </form>
     )
 }

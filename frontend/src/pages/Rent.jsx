@@ -39,7 +39,6 @@ export default function Rent() {
         }
 
         // TODO: Display bookings for location and dont allow new overlapping booking
-        // TODO: Restrict number of guests from being larger than max guests
         // TODO: If submit fails show message and/or change colors, etc
         return (
             <>
@@ -65,7 +64,7 @@ export default function Rent() {
                 <br/>
                 <label for = "numGuests"><b>Max Guests</b></label>
                 <br/>
-                <input type = "number" id = "numGuestsNew" placeholder = "Enter Number Of Guests" name = "numGuests" required />
+                <input type = "number" id = "numGuestsNew" placeholder = "Enter Number Of Guests" name = "numGuests" min = "1" max = {rental.maxGuests} required />
                 <br/>
                 <button type = "submit" onClick = {rentClicked}>Rent</button>
             </form>
