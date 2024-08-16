@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
+import { Navigate, Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ChakraLink, Button, TableContainer, Table, Thead, Tbody, Tr, Th } from '@chakra-ui/react'
 import axios from "axios";
-import  { Navigate, Link } from 'react-router-dom'
 import AuthenticationService from "../components/AuthenticationService";
 
 export default function Rentals() {
-    const [rentals, setRentals] = useState();
+    const [rentals, setRentals] = useState([]);
     useEffect(async () => {
         await axios.get("https://localhost:8080/properties")
         .then(response => {
@@ -23,28 +24,30 @@ export default function Rentals() {
             <>
             <h1>Available properties</h1>
             <br/>
-            <table>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Max Guests</th>
-                    <th>Address</th>
-                    <th>Rent</th>
-                </tr>
-                <tbody>
-                    {rentals && rentals.map && rentals.map(rental =>
-                        <>
-                        <tr key = {rental.id}>
-                            <th>{rental.title}</th>
-                            <th>{rental.description}</th>
-                            <th>{rental.maxGuests}</th>
-                            <th>{rental.location}</th>
-                            <th><Link to={"/rent/" + rental.id}><button>Rent</button></Link></th>
-                        </tr>
-                        </>
-                    )}
-                </tbody>
-            </table>
+            <TableContainer>
+                <Table>
+                    <Thead>
+                        <Tr>
+                            <Th>Description</Th>
+                            <Th>Max Guests</Th>
+                            <Th>Address</Th>
+                            <Th>Rent</Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        {rentals && rentals.map && rentals.map(rental =>
+                            <>
+                            <Tr key = {rental.id}>
+                                <Th>{rental.description}</Th>
+                                <Th>{rental.maxGuests}</Th>
+                                <Th>{rental.location}</Th>
+                                <Th><ChakraLink as={ReactRouterLink} to={"/rent/" + rental.id}><Button>Rent</Button></ChakraLink></Th>
+                            </Tr>
+                            </>
+                        )}
+                    </Tbody>
+                </Table>
+            </TableContainer>
             </>
         )
     } else {
