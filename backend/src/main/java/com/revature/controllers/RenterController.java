@@ -13,7 +13,7 @@ public class RenterController {
     private RenterService renterService;
 
     // Register a new renter
-    @PostMapping("/register")
+    @PostMapping("/renter/register")
     public ResponseEntity<RenterModel> createRenter(@RequestBody UserModel user) {
         RenterModel renter = renterService.createRenter(user);
         return ResponseEntity.ok(renter);
