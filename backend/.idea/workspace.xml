@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db17df3f-fc84-491c-bdcf-9cacf4a74275" name="Changes" comment="Seems to be a working version">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_13_24__14_53__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_13_24__14_53__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="db17df3f-fc84-491c-bdcf-9cacf4a74275" name="Changes" comment="Testing gitignore" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,6 +22,14 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -123,7 +126,23 @@
       <option name="project" value="LOCAL" />
       <updated>1723822350178</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Testing gitignore">
+      <option name="closed" value="true" />
+      <created>1723823494969</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1723823494969</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Testing gitignore">
+      <option name="closed" value="true" />
+      <created>1723823545470</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1723823545470</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,6 +162,7 @@
     <MESSAGE value="Added owner and renter service and controller implementation. Commented some things out where I needed BookingModel and PropertyModel" />
     <MESSAGE value="Changed a few @Autowires in the SecurityConfig, and changed a lot regarding the Models and the connection between them all. Current error is:  A UserDetailsService must be set." />
     <MESSAGE value="Seems to be a working version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Seems to be a working version" />
+    <MESSAGE value="Testing gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing gitignore" />
   </component>
 </project>
