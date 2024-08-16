@@ -1,16 +1,10 @@
-// package com.revature.Respository;
-
-// public class PropertyRepo {
-    
-// }
-
-package com.revature.Respository;
+package com.revature.repositories;
 
 import java.util.List;
 
-import com.revature.models.PropertyModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import com.revature.models.PropertyModel;
 
 @Repository
 public interface PropertyRepo extends JpaRepository<PropertyModel, Long> {
