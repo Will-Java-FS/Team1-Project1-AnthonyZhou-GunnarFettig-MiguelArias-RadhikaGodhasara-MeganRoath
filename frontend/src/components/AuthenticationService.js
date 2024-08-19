@@ -1,3 +1,5 @@
+import axios from "axios";
+
 class AuthenticationService {
     loginRenter(username) {
         sessionStorage.setItem("authenticatedUser", username);
@@ -12,6 +14,7 @@ class AuthenticationService {
     }
   
     logout() {
+        delete axios.defaults.headers.common["Authorization"];
         localStorage.clear();
         sessionStorage.clear();
         window.location.reload(false);
@@ -33,8 +36,9 @@ class AuthenticationService {
         return sessionStorage.getItem("role") === "Owner";
     }
 
-    setUpToken(jwtToken) {
-        sessionStorage.setItem("token", jwtToken);
+    setUpToken(token) {
+        axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+        sessionStorage.setItem("token", token);
     }
 }
 
