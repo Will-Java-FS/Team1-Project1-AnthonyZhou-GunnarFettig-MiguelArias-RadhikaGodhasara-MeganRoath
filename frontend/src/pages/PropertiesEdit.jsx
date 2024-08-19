@@ -46,7 +46,7 @@ export default function PropertiesEdit() {
         // TODO: If submit fails show message and/or change colors, etc
         return (
             <>
-            <Heading>Edit your property</Heading>
+            <Heading size='md'>Edit your property</Heading>
             <ChakraLink as = {ReactRouterLink} to="/properties"><Button>Back</Button></ChakraLink>
             <form>
                 <FormControl isRequired>

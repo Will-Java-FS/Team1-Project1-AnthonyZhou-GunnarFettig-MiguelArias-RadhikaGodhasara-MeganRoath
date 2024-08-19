@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Navigate, Link as ReactRouterLink } from 'react-router-dom'
-import { Link as ChakraLink, Button, TableContainer, Table, Thead, Tbody, Tr, Th, Heading } from '@chakra-ui/react'
+import { Link as ChakraLink, Button, TableContainer, Table, Thead, Tbody, Tr, Th, Td, Heading } from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
@@ -15,14 +15,14 @@ export default function Rentals() {
             }
         })
         .catch(error => {
-            console.error('Error when attempting to retrieve rentals!', error);
+            console.error('Error when attempting to retrieve rental properties!', error);
         });
     }, [rentals]);
 
     if (AuthenticationService.isLoggedInRenter()) {
         return (
             <>
-            <Heading>Available properties</Heading>
+            <Heading size='md'>Available properties</Heading>
             <TableContainer>
                 <Table>
                     <Thead>
@@ -37,10 +37,10 @@ export default function Rentals() {
                         {rentals && rentals.map && rentals.map(rental =>
                             <>
                             <Tr key = {rental.id}>
-                                <Th>{rental.description}</Th>
-                                <Th>{rental.maxGuests}</Th>
-                                <Th>{rental.location}</Th>
-                                <Th><ChakraLink as={ReactRouterLink} to={"/rent/" + rental.id}><Button>Rent</Button></ChakraLink></Th>
+                                <Td>{rental.description}</Td>
+                                <Td>{rental.maxGuests}</Td>
+                                <Td>{rental.location}</Td>
+                                <Td><ChakraLink as={ReactRouterLink} to={"/rent/" + rental.id}><Button>Rent</Button></ChakraLink></Td>
                             </Tr>
                             </>
                         )}
