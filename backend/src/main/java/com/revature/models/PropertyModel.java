@@ -1,5 +1,7 @@
 package com.revature.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,9 +16,10 @@ public class PropertyModel{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // @OneToMany(fetch = FetchType.EAGER)
-    // @Column(name = "owner_id")
-    // private Long ownerID;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+    @JsonBackReference
+    private OwnerModel owner;
 
     @Column(name = "address")
     private String address;

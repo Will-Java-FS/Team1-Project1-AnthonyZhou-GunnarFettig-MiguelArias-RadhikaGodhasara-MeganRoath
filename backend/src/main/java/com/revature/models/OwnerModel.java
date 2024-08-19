@@ -1,6 +1,8 @@
 package com.revature.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -18,8 +20,8 @@ public class OwnerModel {
     @JoinColumn(name = "user_id", nullable = false)
     private UserModel user;
 
-    @OneToMany
-    @JoinColumn(name = "owner_id")
+    @OneToMany(mappedBy = "owner")
+    @JsonManagedReference
     private List<PropertyModel> properties;
 
 
