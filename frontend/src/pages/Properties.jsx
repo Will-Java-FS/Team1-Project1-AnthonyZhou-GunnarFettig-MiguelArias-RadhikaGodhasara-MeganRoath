@@ -28,7 +28,7 @@ export default function Properties() {
         const newPropertyClicked = async (event) => {
             event.preventDefault();
             await axios.post("https://localhost:8080/properties", {
-                ownerUsername: AuthenticationService.loggedInUsername(),
+                ownerId: AuthenticationService.loggedInUserId(),
                 description: description,
                 maxGuests: maxGuests,
                 address: address 

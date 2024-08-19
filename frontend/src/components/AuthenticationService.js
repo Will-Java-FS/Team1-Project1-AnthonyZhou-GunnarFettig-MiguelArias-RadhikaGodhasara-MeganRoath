@@ -1,14 +1,16 @@
 import axios from "axios";
 
 class AuthenticationService {
-    loginRenter(username) {
+    loginRenter(username, id) {
         sessionStorage.setItem("authenticatedUser", username);
+        sessionStorage.setItem("authenticatedUserId", id);
         sessionStorage.setItem("role", "Renter");
         console.log("Successful login");
     }
   
-    loginOwner(username) {
+    loginOwner(username, id) {
         sessionStorage.setItem("authenticatedUser", username);
+        sessionStorage.setItem("authenticatedUserId", id);
         sessionStorage.setItem("role", "Owner");
         console.log("Successful login");
     }
@@ -22,6 +24,10 @@ class AuthenticationService {
   
 	loggedInUsername() {
 		return sessionStorage.getItem("authenticatedUser");
+	}
+
+    loggedInUserId() {
+		return sessionStorage.getItem("authenticatedUserId");
 	}
 
     isLoggedIn() {

@@ -28,7 +28,7 @@ export default function Rent() {
         const rentClicked = async (event) => {
             event.preventDefault();
             await axios.patch("https://localhost:8080/bookings/" + window.location.pathname, {
-                username: AuthenticationService.loggedInUsername(),
+                renterId: AuthenticationService.loggedInUserId(),
                 startDate: start,
                 endDate: end,
                 numGuests: numGuests

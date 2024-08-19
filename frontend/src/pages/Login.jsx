@@ -18,8 +18,8 @@ export default function Login() {
         .then(response => {
             if (response.ok) {
                 setLoginFailed(false);
-                if (response.data.role === "Renter") {AuthenticationService.loginRenter(response.data.username);}
-                else {AuthenticationService.loginOwner(response.data.username);}
+                if (response.data.role === "Renter") {AuthenticationService.loginRenter(response.data.username, response.data.id);}
+                else {AuthenticationService.loginOwner(response.data.username, response.data.id);}
                 AuthenticationService.setUpToken(response.data.token);
                 return <Navigate to = '/redirect' />
             } else {
