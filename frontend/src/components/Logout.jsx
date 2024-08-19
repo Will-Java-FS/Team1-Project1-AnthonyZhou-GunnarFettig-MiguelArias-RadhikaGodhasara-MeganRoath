@@ -1,4 +1,5 @@
 import { Navigate } from "react-router-dom";
+import { Button, Heading } from '@chakra-ui/react'
 import AuthenticationService from "./AuthenticationService";
 
 export default function Logout() {
@@ -8,7 +9,12 @@ export default function Logout() {
             AuthenticationService.logout();
             return <Navigate to = '/login' />
         }
-        return <button type = "submit" onClick = {logoutClicked}>Logout</button>
+        return (
+            <>
+            <Heading>Logged in as {AuthenticationService.loggedInUsername()}</Heading>
+            <Button onClick = {logoutClicked}>Logout</Button>
+            </>
+        )
     } else {
         return <></>
     }

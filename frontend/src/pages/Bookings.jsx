@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { Navigate, Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ChakraLink, Button, TableContainer, Table, Thead, Tbody, Tr, Th, Heading } from '@chakra-ui/react'
 import axios from "axios";
-import  { Navigate, Link } from 'react-router-dom'
 import AuthenticationService from "../components/AuthenticationService";
 
 export default function Bookings() {
     const [bookings, setBookings] = useState([]);
+
     useEffect(async () => {
         await axios.get("https://localhost:8000/bookings")
         .then(response => {
@@ -35,31 +37,34 @@ export default function Bookings() {
 
         return (
             <>
-            <h1>Your Bookings</h1>
-            <Link to="/rent"><button>Back</button></Link>
-            <br/>
-            <table>
-                <tr>
-                    <th>Address</th>
-                    <th>Start</th>
-                    <th>End</th>
-                    <th>Status</th>
-                    <th>Cancel</th>
-                </tr>
-                <tbody>
-                    {bookings && bookings.map && bookings.map(booking =>
-                        <>
-                        <tr key = {booking.id}>
-                            <th>{booking.property.address}</th>
-                            <th>{booking.startDate}</th>
-                            <th>{booking.endDate}</th>
-                            <th>{booking.status}</th>
-                            <th><button onClick = {cancelBooking(booking.id)}>Cancel</button></th>
-                        </tr>
-                        </>
-                    )}
-                </tbody>
-            </table>
+            <TableContainer>
+                <Heading>Your Bookings</Heading>
+                <ChakraLink as={ReactRouterLink} to="/rent"><Button>Back</Button></ChakraLink>
+                <Table>
+                    <Thead>
+                        <Tr>
+                            <Th>Address</Th>
+                            <Th>Start</Th>
+                            <Th>End</Th>
+                            <Th>Status</Th>
+                            <Th>Cancel</Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        {bookings && bookings.map && bookings.map(booking =>
+                            <>
+                            <Tr key = {booking.id}>
+                                <Th>{booking.property.address}</Th>
+                                <Th>{booking.startDate}</Th>
+                                <Th>{booking.endDate}</Th>
+                                <Th>{booking.status}</Th>
+                                <Th><Button variant = "link" onClick = {cancelBooking(booking.id)}>Cancel</Button></Th>
+                            </Tr>
+                            </>
+                        )}
+                    </Tbody>
+                </Table>
+            </TableContainer>
             </>
         )
     } else {

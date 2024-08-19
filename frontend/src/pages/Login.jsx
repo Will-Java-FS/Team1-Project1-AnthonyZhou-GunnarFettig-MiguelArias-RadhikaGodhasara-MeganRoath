@@ -1,20 +1,29 @@
-import { Link, Navigate } from "react-router-dom";
+import { useState } from 'react';
+import { Link as ReactRouterLink, Navigate } from "react-router-dom";
+import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Input, Button, Heading } from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
 export default function Login() {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [loginFailed, setLoginFailed] = useState(false)
+
     const loginClicked = async (event) => {
         event.preventDefault();
         await axios.post("https://localhost:8080/authenticate", {
-                username: document.getElementById("usernameLogin").value,
-                password: document.getElementById("passwordLogin").value
+                username: username,
+                password: password
         })
         .then(response => {
             if (response.ok) {
-                if (response.data.role === "Renter") {AuthenticationService.loginRenter(response.data.username);}
-                else {AuthenticationService.loginOwner(response.data.username);}
+                setLoginFailed(false);
+                if (response.data.role === "Renter") {AuthenticationService.loginRenter(response.data.username, response.data.id);}
+                else {AuthenticationService.loginOwner(response.data.username, response.data.id);}
                 AuthenticationService.setUpToken(response.data.token);
                 return <Navigate to = '/redirect' />
+            } else {
+                setLoginFailed(true);
             }
         })
         .catch(error => {
@@ -22,20 +31,25 @@ export default function Login() {
         });
     }
 
-    // TODO: If submit fails show message and/or change colors, etc
+    const userEmptyError = username === '';
+    const passEmptyError = password === '';
+    
     return (
-        <form id = "userLogin">
-            <label for = "username"><b>Username</b></label>
-            <br/>
-            <input type = "text" placeholder = "Enter Username" id = "usernameLogin" name = "username" required />
-            <br/>
-            <label for = "password"><b>Password</b></label>
-            <br/>
-            <input type = "password" placeholder = "Enter Password" id = "passwordLogin" name = "password" required />  
-            <br/>
-            <button type = "submit" onClick = {loginClicked}>Login</button>
-            <br/>
-            <Link to="/register">Dont have an account? Sign up here.</Link>
+        <form>
+            <Heading>Login</Heading>
+            <FormControl isRequired>
+                <FormLabel>Username</FormLabel>
+                <Input type = "text" placeholder = "Enter Username" onChange={event => setUsername(event.currentTarget.value)} />
+                {userEmptyError && loginFailed ? <FormErrorMessage>Username is required.</FormErrorMessage> : null}
+            </FormControl>
+            <FormControl isRequired>
+                <FormLabel>Password</FormLabel>
+                <Input type = "password" placeholder = "Enter Password" onChange={event => setPassword(event.currentTarget.value)} />
+                {passEmptyError && loginFailed ? <FormErrorMessage>Password is required.</FormErrorMessage> : null}
+            </FormControl>
+            <Button type = "submit" onClick = {loginClicked}>Login</Button>
+            <ChakraLink as={ReactRouterLink} to="/register">Dont have an account? Sign up here.</ChakraLink>
+            {loginFailed ? <FormErrorMessage>Login failed.</FormErrorMessage> : null}
         </form>
     )
 }

@@ -1,4 +1,5 @@
 import { Outlet, Navigate } from "react-router-dom";
+import { Heading } from '@chakra-ui/react'
 import Logout from "../components/Logout";
 
 export default function Layout() {
@@ -6,7 +7,7 @@ export default function Layout() {
     return (
         <>
         <nav>
-            <h1>Project 1 - Property Booking</h1>
+            <Heading>Project 1 - Property Booking</Heading>
             <Logout />
         </nav>
 

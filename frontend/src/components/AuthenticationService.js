@@ -1,17 +1,22 @@
+import axios from "axios";
+
 class AuthenticationService {
-    loginRenter(username) {
+    loginRenter(username, id) {
         sessionStorage.setItem("authenticatedUser", username);
+        sessionStorage.setItem("authenticatedUserId", id);
         sessionStorage.setItem("role", "Renter");
         console.log("Successful login");
     }
   
-    loginOwner(username) {
+    loginOwner(username, id) {
         sessionStorage.setItem("authenticatedUser", username);
+        sessionStorage.setItem("authenticatedUserId", id);
         sessionStorage.setItem("role", "Owner");
         console.log("Successful login");
     }
   
     logout() {
+        delete axios.defaults.headers.common["Authorization"];
         localStorage.clear();
         sessionStorage.clear();
         window.location.reload(false);
@@ -19,6 +24,10 @@ class AuthenticationService {
   
 	loggedInUsername() {
 		return sessionStorage.getItem("authenticatedUser");
+	}
+
+    loggedInUserId() {
+		return sessionStorage.getItem("authenticatedUserId");
 	}
 
     isLoggedIn() {
@@ -33,8 +42,9 @@ class AuthenticationService {
         return sessionStorage.getItem("role") === "Owner";
     }
 
-    setUpToken(jwtToken) {
-        sessionStorage.setItem("token", jwtToken);
+    setUpToken(token) {
+        axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+        sessionStorage.setItem("token", token);
     }
 }
 
