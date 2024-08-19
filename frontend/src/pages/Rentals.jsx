@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Navigate, Link as ReactRouterLink } from 'react-router-dom'
-import { Link as ChakraLink, Button, TableContainer, Table, Thead, Tbody, Tr, Th } from '@chakra-ui/react'
+import { Link as ChakraLink, Button, TableContainer, Table, Thead, Tbody, Tr, Th, Heading } from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
@@ -22,8 +22,7 @@ export default function Rentals() {
     if (AuthenticationService.isLoggedInRenter()) {
         return (
             <>
-            <h1>Available properties</h1>
-            <br/>
+            <Heading>Available properties</Heading>
             <TableContainer>
                 <Table>
                     <Thead>

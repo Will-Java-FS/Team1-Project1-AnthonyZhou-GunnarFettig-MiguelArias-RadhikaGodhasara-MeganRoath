@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Navigate, Link as ReactRouterLink } from 'react-router-dom'
-import { Link as ChakraLink, Button, TableContainer, Table, Thead, Tbody, Tr, Th } from '@chakra-ui/react'
+import { Link as ChakraLink, Button, TableContainer, Table, Thead, Tbody, Tr, Th, Heading } from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
@@ -38,7 +38,7 @@ export default function Bookings() {
         return (
             <>
             <TableContainer>
-                <h1>Your Bookings</h1>
+                <Heading>Your Bookings</Heading>
                 <ChakraLink as={ReactRouterLink} to="/rent"><Button>Back</Button></ChakraLink>
                 <Table>
                     <Thead>

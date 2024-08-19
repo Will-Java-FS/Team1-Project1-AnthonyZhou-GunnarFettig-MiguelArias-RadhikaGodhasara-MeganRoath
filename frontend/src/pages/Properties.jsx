@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import  { Navigate, Link as ReactRouterLink } from 'react-router-dom';
 import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Input, Button, NumberInput, NumberInputField,
-        NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, TableContainer, Table, Thead, Tbody, Tr, Th} from '@chakra-ui/react'
+        NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, TableContainer, Table, Thead, Tbody, Tr, Th, Heading } from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
@@ -61,11 +61,8 @@ export default function Properties() {
         // TODO: If submit fails show message and/or change colors, etc
         return (
             <>
-            <h1>Your Properties</h1>
-            <br/>
             <form>
-                <h>Add a new property</h>
-                <br/>
+                <Heading>Add a new property</Heading>
                 <FormControl isRequired>
                     <FormLabel>Description</FormLabel>
                     <Input type = "text" placeholder = "Enter Description" onChange={event => setDescription(event.currentTarget.value)} />
@@ -86,6 +83,7 @@ export default function Properties() {
                 </FormControl>
                 <Button type = "submit" onClick = {newPropertyClicked}>Add Property</Button>
             </form>
+            <Heading>Your Properties</Heading>
             <TableContainer>
                 <Table>
                     <Thead>

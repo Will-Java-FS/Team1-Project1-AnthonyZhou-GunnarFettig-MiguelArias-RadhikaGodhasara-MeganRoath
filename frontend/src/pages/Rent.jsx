@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import  { Navigate, Link as ReactRouterLink } from 'react-router-dom'
 import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Button, Input, NumberInput, NumberInputField,
-        NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper} from '@chakra-ui/react'
+        NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Heading} from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
@@ -48,17 +48,12 @@ export default function Rent() {
         // TODO: If submit fails show message and/or change colors, etc
         return (
             <>
-            <h1>Rent this property</h1>
+            <Heading>Rent this property</Heading>
             <ChakraLink as={ReactRouterLink} to="/rent"><Button>Back</Button></ChakraLink>
-            <br/>
-            <b>Title: </b><p>{rental.title}</p>
-            <br/>
-            <b>Description: </b><p>{rental.description}</p>
-            <br/>
-            <b>Max Guests: </b><p>{rental.maxGuests}</p>
-            <br/>
-            <b>Address: </b><p>{rental.location}</p>
-            <br/>
+            <Heading>Title: {rental.title}</Heading>
+            <Heading>Description: {rental.description}</Heading>
+            <Heading>Max Guests: {rental.maxGuests}</Heading>
+            <Heading>Address: {rental.location}</Heading>
             <form>
                 <FormControl isRequired>
                     <FormLabel>Start Date</FormLabel>

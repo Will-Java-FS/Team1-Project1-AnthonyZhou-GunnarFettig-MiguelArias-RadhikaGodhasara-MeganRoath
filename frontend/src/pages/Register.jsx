@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link as ReactRouterLink, Navigate } from "react-router-dom";
-import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Input, Button, Radio, RadioGroup, HStack } from '@chakra-ui/react'
+import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Input, Button, Radio, RadioGroup, HStack, Heading } from '@chakra-ui/react'
 import axios from "axios";
 
 export default function Register() {
@@ -10,6 +10,7 @@ export default function Register() {
     const [first, setFirst] = useState('')
     const [last, setLast] = useState('')
     const [role, setRole] = useState('Renter')
+    const [registerFailed, setRegisterFailed] = useState(false)
 
     const registerClicked = async (event) => {
         event.preventDefault();
@@ -24,7 +25,10 @@ export default function Register() {
         .then(response => {
             console.log(response.data);
             if (response.ok) {
+                setRegisterFailed(false);
                 return <Navigate to = '/login' />
+            } else {
+                setRegisterFailed(true);
             }
         })
         .catch(error => {
@@ -32,10 +36,13 @@ export default function Register() {
         });
     }
 
-    // TODO: If submit fails show message and/or change colors, etc
+    const userEmptyError = username === '';
+    const passEmptyError = password === '';
+    const emailEmptyError = email === '';
     // TODO: add password restrictions
     return (
         <form>
+            <Heading>Register a new account</Heading>
             <FormControl isRequired>
                 <FormLabel>I am looking to:</FormLabel>
                 <RadioGroup defaultValue = "Renter" onChange={setRole} value={role}>
@@ -48,14 +55,17 @@ export default function Register() {
             <FormControl isRequired>
                 <FormLabel>Username</FormLabel>
                 <Input type = "text" placeholder = "Enter Username" onChange={event => setUsername(event.currentTarget.value)} />
+                {userEmptyError && registerFailed ? <FormErrorMessage>Username is required.</FormErrorMessage> : null}
             </FormControl>
             <FormControl isRequired>
                 <FormLabel>Password</FormLabel>
-                <Input type = "password" placeholder = "Enter Password" onChange={event => setPassword(event.currentTarget.value)} /> 
+                <Input type = "password" placeholder = "Enter Password" onChange={event => setPassword(event.currentTarget.value)} />
+                {passEmptyError && registerFailed ? <FormErrorMessage>Password is required.</FormErrorMessage> : null}
             </FormControl>
             <FormControl isRequired>
                 <FormLabel>Email</FormLabel>
                 <Input type = "email" placeholder = "Enter Email" onChange={event => setEmail(event.currentTarget.value)} /> 
+                {emailEmptyError && registerFailed ? <FormErrorMessage>Email is required.</FormErrorMessage> : null}
             </FormControl>
             <FormControl>
                 <FormLabel>First Name</FormLabel>
@@ -66,6 +76,7 @@ export default function Register() {
                 <Input type = "text" placeholder = "Enter Last Name" onChange={event => setLast(event.currentTarget.value)} /> 
             </FormControl>
             <Button type = "submit" onClick = {registerClicked}>Register</Button>
+            {registerFailed ? <FormErrorMessage>Registration failed.</FormErrorMessage> : null}
             <ChakraLink as = {ReactRouterLink} to = "/login">Already have an account? Login here.</ChakraLink>
         </form>
     )

@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import  { Navigate, Link as ReactRouterLink } from 'react-router-dom'
-import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Button, NumberInput, NumberInputField,
-        NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Editable, EditableInput, EditablePreview,
-        EditableTextarea} from '@chakra-ui/react'
+import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Button, NumberInput, NumberInputField, Heading,
+        NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Editable, EditablePreview, EditableTextarea} from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
@@ -47,9 +46,8 @@ export default function PropertiesEdit() {
         // TODO: If submit fails show message and/or change colors, etc
         return (
             <>
-            <h1>Edit your property</h1>
-            <ChakraLink as = {ReactRouterLink} to="/properties"><button>Back</button></ChakraLink>
-            <br/>
+            <Heading>Edit your property</Heading>
+            <ChakraLink as = {ReactRouterLink} to="/properties"><Button>Back</Button></ChakraLink>
             <form>
                 <FormControl isRequired>
                     <FormLabel>Description</FormLabel>
