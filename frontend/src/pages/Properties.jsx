@@ -46,7 +46,7 @@ export default function Properties() {
         
         const deleteClicked = async (propertyId, event) => {
             event.preventDefault();
-            await axios.delete("https://localhost:8080/properties/" + propertyId)
+            await axios.delete("http://localhost:8080/properties/" + propertyId)
             .then(response => {
                 console.log(response.data);
                 if (response.status == 200) {
