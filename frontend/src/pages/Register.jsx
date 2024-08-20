@@ -42,7 +42,7 @@ export default function Register() {
     // TODO: add password restrictions
     return (
         <form>
-            <Heading>Register a new account</Heading>
+            <Heading size='md'>Register a new account</Heading>
             <FormControl isRequired>
                 <FormLabel>I am looking to:</FormLabel>
                 <RadioGroup defaultValue = "Renter" onChange={setRole} value={role}>

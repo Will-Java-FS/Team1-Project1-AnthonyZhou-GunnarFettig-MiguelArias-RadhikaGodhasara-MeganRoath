@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Navigate, Link as ReactRouterLink } from 'react-router-dom'
-import { Link as ChakraLink, Button, TableContainer, Table, Thead, Tbody, Tr, Th, Heading } from '@chakra-ui/react'
+import { Link as ChakraLink, Button, TableContainer, Table, Thead, Tbody, Tr, Th, Td, Heading } from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
@@ -38,7 +38,7 @@ export default function Bookings() {
         return (
             <>
             <TableContainer>
-                <Heading>Your Bookings</Heading>
+                <Heading size='md'>Your Bookings</Heading>
                 <ChakraLink as={ReactRouterLink} to="/rent"><Button>Back</Button></ChakraLink>
                 <Table>
                     <Thead>
@@ -54,11 +54,11 @@ export default function Bookings() {
                         {bookings && bookings.map && bookings.map(booking =>
                             <>
                             <Tr key = {booking.id}>
-                                <Th>{booking.property.address}</Th>
-                                <Th>{booking.startDate}</Th>
-                                <Th>{booking.endDate}</Th>
-                                <Th>{booking.status}</Th>
-                                <Th><Button variant = "link" onClick = {cancelBooking(booking.id)}>Cancel</Button></Th>
+                                <Td>{booking.property.address}</Td>
+                                <Td>{booking.startDate}</Td>
+                                <Td>{booking.endDate}</Td>
+                                <Td>{booking.status}</Td>
+                                <Td><Button variant = "link" onClick = {cancelBooking(booking.id)}>Cancel</Button></Td>
                             </Tr>
                             </>
                         )}

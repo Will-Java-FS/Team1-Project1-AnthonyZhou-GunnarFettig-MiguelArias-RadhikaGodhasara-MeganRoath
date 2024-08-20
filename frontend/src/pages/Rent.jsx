@@ -48,12 +48,12 @@ export default function Rent() {
         // TODO: If submit fails show message and/or change colors, etc
         return (
             <>
-            <Heading>Rent this property</Heading>
+            <Heading size='md'>Rent this property</Heading>
             <ChakraLink as={ReactRouterLink} to="/rent"><Button>Back</Button></ChakraLink>
-            <Heading>Title: {rental.title}</Heading>
-            <Heading>Description: {rental.description}</Heading>
-            <Heading>Max Guests: {rental.maxGuests}</Heading>
-            <Heading>Address: {rental.location}</Heading>
+            <Heading size='sm'>Title: {rental.title}</Heading>
+            <Heading size='sm'>Description: {rental.description}</Heading>
+            <Heading size='sm'>Max Guests: {rental.maxGuests}</Heading>
+            <Heading size='sm'>Address: {rental.location}</Heading>
             <form>
                 <FormControl isRequired>
                     <FormLabel>Start Date</FormLabel>

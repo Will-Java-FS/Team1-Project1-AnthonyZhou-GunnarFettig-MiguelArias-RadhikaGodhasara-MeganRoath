@@ -36,7 +36,7 @@ export default function Login() {
     
     return (
         <form>
-            <Heading>Login</Heading>
+            <Heading size='md'>Login</Heading>
             <FormControl isRequired>
                 <FormLabel>Username</FormLabel>
                 <Input type = "text" placeholder = "Enter Username" onChange={event => setUsername(event.currentTarget.value)} />

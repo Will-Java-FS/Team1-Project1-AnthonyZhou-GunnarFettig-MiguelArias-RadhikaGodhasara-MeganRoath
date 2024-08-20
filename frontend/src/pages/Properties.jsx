@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import  { Navigate, Link as ReactRouterLink } from 'react-router-dom';
 import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Input, Button, NumberInput, NumberInputField,
-        NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, TableContainer, Table, Thead, Tbody, Tr, Th, Heading } from '@chakra-ui/react'
+        NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, TableContainer, Table, Thead, Tbody, Tr, Th, Td, Heading } from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
@@ -62,7 +62,7 @@ export default function Properties() {
         return (
             <>
             <form>
-                <Heading>Add a new property</Heading>
+                <Heading size='md'>Add a new property</Heading>
                 <FormControl isRequired>
                     <FormLabel>Description</FormLabel>
                     <Input type = "text" placeholder = "Enter Description" onChange={event => setDescription(event.currentTarget.value)} />
@@ -83,7 +83,7 @@ export default function Properties() {
                 </FormControl>
                 <Button type = "submit" onClick = {newPropertyClicked}>Add Property</Button>
             </form>
-            <Heading>Your Properties</Heading>
+            <Heading size='md'>Your Properties</Heading>
             <TableContainer>
                 <Table>
                     <Thead>
@@ -99,11 +99,11 @@ export default function Properties() {
                         {properties && properties.map && properties.map(property =>
                             <>
                             <Tr key = {property.id}>
-                                <Th>{property.description}</Th>
-                                <Th>{property.maxGuests}</Th>
-                                <Th>{property.location}</Th>
-                                <Th><ChakraLink as = {ReactRouterLink} to={"/property/" + property.id}><Button variant = "link">Edit</Button></ChakraLink></Th>
-                                <Th><Button type = "submit" onClick = {deleteClicked(property.id)}>Delete</Button></Th>
+                                <Td>{property.description}</Td>
+                                <Td>{property.maxGuests}</Td>
+                                <Td>{property.location}</Td>
+                                <Td><ChakraLink as = {ReactRouterLink} to={"/property/" + property.id}><Button variant = "link">Edit</Button></ChakraLink></Td>
+                                <Td><Button type = "submit" onClick = {deleteClicked(property.id)}>Delete</Button></Td>
                             </Tr>
                             </>
                         )}
