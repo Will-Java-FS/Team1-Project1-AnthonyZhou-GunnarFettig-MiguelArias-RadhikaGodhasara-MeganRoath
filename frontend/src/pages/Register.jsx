@@ -41,7 +41,7 @@ export default function Register() {
     const userEmptyError = username === '';
     const passEmptyError = password === '';
     const emailEmptyError = email === '';
-    // TODO: add password restrictions
+
     return (
         <form>
             <Heading size='md'>Register a new account</Heading>

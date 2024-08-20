@@ -13,22 +13,15 @@ export default function Login() {
     const loginClicked = async (event) => {
         event.preventDefault();
 
-        let config = {
-            headers: {
-              "Content-Type": "application/json",
-              'Access-Control-Allow-Origin': '*',
-            }
-        }
-
         await axios.post("http://localhost:8080/authenticate", {
                 username: username,
                 passwordHash: password
-        }, config)
+        })
         .then(response => {
             if (response.status == 200) {
                 setLoginFailed(false);
-                if (response.data.role === "Renter") {AuthenticationService.loginRenter(response.data.username, response.data.id);}
-                else {AuthenticationService.loginOwner(response.data.username, response.data.id);}
+                if (response.data.role === "Renter") {AuthenticationService.loginRenter(response.data.username, response.data.userId);}
+                else {AuthenticationService.loginOwner(response.data.username, response.data.userId);}
                 AuthenticationService.setUpToken(response.data.token);
                 navigate('/redirect');
             } else {
