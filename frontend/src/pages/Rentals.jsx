@@ -6,11 +6,11 @@ import AuthenticationService from "../components/AuthenticationService";
 
 export default function Rentals() {
     const [rentals, setRentals] = useState([]);
-    useEffect(async () => {
-        await axios.get("https://localhost:8080/properties")
+    useEffect(() => {
+        axios.get("http://localhost:8080/properties")
         .then(response => {
             console.log(response.data);
-            if (response.ok) {
+            if (response.status == 200) {
                 setRentals(response.data.results);
             }
         })

@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Link as ReactRouterLink, Navigate } from "react-router-dom";
+import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Input, Button, Radio, RadioGroup, HStack, Heading } from '@chakra-ui/react'
 import axios from "axios";
 
 export default function Register() {
+    const navigate = useNavigate();
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
@@ -14,19 +15,20 @@ export default function Register() {
 
     const registerClicked = async (event) => {
         event.preventDefault();
-        await axios.post("https://localhost:8080/register", {
+        
+        await axios.post("http://localhost:8080/register", {
             username: username,
-            passwordHash: password,
             email: email,
+            passwordHash: password,
             firstName: first,
             lastName: last,
             role: role
         })
         .then(response => {
             console.log(response.data);
-            if (response.ok) {
+            if (response.status == 200) {
                 setRegisterFailed(false);
-                return <Navigate to = '/login' />
+                navigate('/login');
             } else {
                 setRegisterFailed(true);
             }
@@ -48,7 +50,7 @@ export default function Register() {
                 <RadioGroup defaultValue = "Renter" onChange={setRole} value={role}>
                     <HStack spacing = '20px'>
                         <Radio value = 'Renter' id = "renter">Rent a property</Radio>
-                        <Radio value = 'Owner' id = "owner">Rent a property</Radio>
+                        <Radio value = 'Owner' id = "owner">Post my propety for rental</Radio>
                     </HStack>
                 </RadioGroup>
             </FormControl>

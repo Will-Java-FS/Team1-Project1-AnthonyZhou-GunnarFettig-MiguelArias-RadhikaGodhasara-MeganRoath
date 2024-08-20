@@ -11,11 +11,11 @@ export default function Properties() {
     const [address, setAddress] = useState('');
 
     const [properties, setProperties] = useState([]);
-    useEffect(async () => {
-        await axios.get("https://localhost:8080/properties")
+    useEffect(() => {
+        axios.get("http://localhost:8080/properties")
         .then(response => {
             console.log(response.data);
-            if (response.ok) {
+            if (response.status == 200) {
                 setProperties(response.data.results.filter((value) => value.owner.username === AuthenticationService.loggedInUsername()));
             }
         })
@@ -27,7 +27,7 @@ export default function Properties() {
     if (AuthenticationService.isLoggedInOwner()) {
         const newPropertyClicked = async (event) => {
             event.preventDefault();
-            await axios.post("https://localhost:8080/properties", {
+            await axios.post("http://localhost:8080/properties", {
                 ownerId: AuthenticationService.loggedInUserId(),
                 description: description,
                 maxGuests: maxGuests,
@@ -35,7 +35,7 @@ export default function Properties() {
             })
             .then(response => {
                 console.log(response.data);
-                if (response.ok) {
+                if (response.status == 200) {
                     setProperties([...properties, response.data]);
                 }
             })
@@ -49,7 +49,7 @@ export default function Properties() {
             await axios.delete("https://localhost:8080/properties/" + propertyId)
             .then(response => {
                 console.log(response.data);
-                if (response.ok) {
+                if (response.status == 200) {
                     setProperties(properties.filter((value) => value.id != propertyId));
                 }
             })

@@ -11,11 +11,11 @@ export default function PropertiesEdit() {
     const [address, setAddress] = useState('');
 
     const [property, setProperty] = useState();
-    useEffect(async () => {
-        await axios.get("https://localhost:8080/properties/" + window.location.pathname)
+    useEffect(() => {
+        axios.get("http://localhost:8080/properties/" + window.location.pathname)
         .then(response => {
             console.log(response.data);
-            if (response.ok) {
+            if (response.status == 200) {
                 if (response.data.results.username === AuthenticationService.loggedInUsername()) {setProperty(response.data);}
             }
         })
@@ -27,14 +27,14 @@ export default function PropertiesEdit() {
     if (AuthenticationService.isLoggedInOwner()) {
         const updatePropertyClicked = async (event) => {
             event.preventDefault();
-            await axios.patch("https://localhost:8080/properties/" + window.location.pathname, {
+            await axios.patch("http://localhost:8080/properties/" + window.location.pathname, {
                 description: description,
                 maxGuests: maxGuests,
                 address: address
             })
             .then(response => {
                 console.log(response.data);
-                if (response.ok) {
+                if (response.status == 200) {
                     setProperty(response.data)
                 }
             })

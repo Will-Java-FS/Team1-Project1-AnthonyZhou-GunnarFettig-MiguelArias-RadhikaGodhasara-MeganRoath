@@ -1,27 +1,36 @@
 import { useState } from 'react';
-import { Link as ReactRouterLink, Navigate } from "react-router-dom";
+import { Link as ReactRouterLink, Navigate, useNavigate } from "react-router-dom";
 import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Input, Button, Heading } from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
 export default function Login() {
+    const navigate = useNavigate();
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [loginFailed, setLoginFailed] = useState(false)
 
     const loginClicked = async (event) => {
         event.preventDefault();
-        await axios.post("https://localhost:8080/authenticate", {
+
+        let config = {
+            headers: {
+              "Content-Type": "application/json",
+              'Access-Control-Allow-Origin': '*',
+            }
+        }
+
+        await axios.post("http://localhost:8080/authenticate", {
                 username: username,
-                password: password
-        })
+                passwordHash: password
+        }, config)
         .then(response => {
-            if (response.ok) {
+            if (response.status == 200) {
                 setLoginFailed(false);
                 if (response.data.role === "Renter") {AuthenticationService.loginRenter(response.data.username, response.data.id);}
                 else {AuthenticationService.loginOwner(response.data.username, response.data.id);}
                 AuthenticationService.setUpToken(response.data.token);
-                return <Navigate to = '/redirect' />
+                navigate('/redirect');
             } else {
                 setLoginFailed(true);
             }

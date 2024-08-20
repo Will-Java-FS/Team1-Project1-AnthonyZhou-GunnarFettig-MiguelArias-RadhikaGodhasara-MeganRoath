@@ -11,11 +11,11 @@ export default function Rent() {
     const [numGuests, setNumGuests] = useState();
 
     const [rental, setRental] = useState();
-    useEffect(async () => {
-        await axios.get("https://localhost:8000/properties/" + window.location.pathname)
+    useEffect(() => {
+        axios.get("http://localhost:8000/properties/" + window.location.pathname)
         .then(response => {
             console.log(response.data);
-            if (response.ok) {
+            if (response.status == 200) {
                 setRental(response.data)
             }
         })
@@ -35,7 +35,7 @@ export default function Rent() {
             })
             .then(response => {
                 console.log(response.data);
-                if (response.ok) {
+                if (response.status == 200) {
                     setRental(response.data)
                 }
             })
