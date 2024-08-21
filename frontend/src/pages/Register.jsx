@@ -10,7 +10,7 @@ export default function Register() {
     const [email, setEmail] = useState('')
     const [first, setFirst] = useState('')
     const [last, setLast] = useState('')
-    const [role, setRole] = useState('Renter')
+    const [role, setRole] = useState('renter')
     const [registerFailed, setRegisterFailed] = useState(false)
 
     const registerClicked = async (event) => {
@@ -26,7 +26,7 @@ export default function Register() {
         })
         .then(response => {
             console.log(response.data);
-            if (response.status == 200) {
+            if (response.status == 201) {
                 setRegisterFailed(false);
                 navigate('/login');
             } else {
@@ -51,10 +51,10 @@ export default function Register() {
                 <FormControl isRequired>
                     <HStack spacing = '10px'>
                         <FormLabel>I am looking to:</FormLabel>
-                        <RadioGroup defaultValue = "Renter" onChange={setRole} value={role}>
+                        <RadioGroup defaultValue = "renter" onChange={setRole} value={role}>
                             <HStack spacing = '20px'>
-                                <Radio value = 'Renter' id = "renter">Rent a property</Radio>
-                                <Radio value = 'Owner' id = "owner">Post my propety for rental</Radio>
+                                <Radio value = 'renter' id = "renter">Rent a property</Radio>
+                                <Radio value = 'owner' id = "owner">Post my propety for rental</Radio>
                             </HStack>
                         </RadioGroup>
                     </HStack>
