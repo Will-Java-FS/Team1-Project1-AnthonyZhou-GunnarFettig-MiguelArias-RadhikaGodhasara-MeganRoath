@@ -37,8 +37,7 @@ export default function Rent() {
                 guestId: Number(AuthenticationService.loggedInUserId()),
                 startDate: start,
                 endDate: end,
-                numGuests: numGuests,
-                status: 'confirmed'
+                numGuests: numGuests
             })
             .then(response => {
                 console.log(response.data);
@@ -58,10 +57,10 @@ export default function Rent() {
             <>
             <Heading size='lg'>Rent this property</Heading>
             <ChakraLink as={ReactRouterLink} to="/rent"><Button>Back</Button></ChakraLink>
+            <Heading size='md'>Address: {rental.address +", "+ rental.city +", "+ rental.state +" "+ rental.zipcode}</Heading>
             <Heading size='md'>Description: {rental.description}</Heading>
             <Heading size='md'>Bedrooms: {rental.bedrooms}</Heading>
             <Heading size='md'>Bathrooms: {rental.bathrooms}</Heading>
-            <Heading size='md'>Address: {rental.address +", "+ rental.city +", "+ rental.state +" "+ rental.zipcode}</Heading>
             <Heading size='md'>Pets allowed: {rental.pets ? 'Yes' : 'No'}</Heading>
             <form  onSubmit={rentClicked}>
                 <FormControl isRequired>
@@ -73,7 +72,7 @@ export default function Rent() {
                     <Input type = "date" placeholder = "Enter End Date" onChange={event => setEnd(event.currentTarget.value)} />
                 </FormControl>
                 <FormControl isRequired>
-                    <FormLabel>Number Of Guests</FormLabel>
+                    <FormLabel>Number Of Guests (Max: {rental.guests})</FormLabel>
                     <NumberInput onSubmit={event => setNumGuests(event.target.value)} max = {rental.guests} min = {1}>
                         <NumberInputField />
                         <NumberInputStepper>
