@@ -42,13 +42,6 @@ public class BookingService {
         @param: date range
         @param: Size
         @param: Owner
-
-    //Need info from property table
-    public Booking getBookingByGuest(int guest_id){
-        Optional<Booking> optionalBooking = bookingRepo.findById(guest_id);
-        Booking booking = optionalBooking.get();
-        return booking;
-    }
      */
 
     public BookingModel getBookingByProperty(Long property_id){
@@ -56,13 +49,6 @@ public class BookingService {
             BookingModel booking = optionalBooking.get();
             return booking;
     }
-
-    /*
-    public Booking getBookingByRange(int start_date, int end_date){
-        Duration range = Duration.between(start_date, end_date);
-        //
-    }
-     */
 
     public void deleteBooking(Long booking_id) {
         Optional<BookingModel> optionalBooking = bookingRepo.findById(booking_id);

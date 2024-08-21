@@ -20,18 +20,13 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
-    //Get all bookings that are available
-    //had to authorize for testing
     @GetMapping("/bookings")
     public ResponseEntity<List<BookingModel>> getAllBookings(){
         List<BookingModel> bookings = bookingService.getAllBookings();
         return ResponseEntity.status(200).body(bookings);
     }
-    //Probably should get mapping by status
 
-    /*
-    Handler to book a listed property by property id
-    */
+    //Handler to book a listed property by property id
     @PostMapping("/bookings")
     public ResponseEntity<String> addBooking(@RequestParam BookingModel booking){
         //Check if property is already booked for input dates
@@ -45,9 +40,6 @@ public class BookingController {
     }
 
 /*
-    Handler to retrieve available properties to book
-    @GetMapping('/')
-
     Handlers to retrieve available properties by different params:
         @param: guest_id reference users(user_id)
         @param: property_id
@@ -55,6 +47,7 @@ public class BookingController {
         @param: Size
         @param: Owner
      */
+
     @GetMapping("/bookings/{property_id}")
     public ResponseEntity<String> getPropertyByID(@RequestParam Long property_id){
         BookingModel property = bookingService.getBookingByProperty(property_id);
