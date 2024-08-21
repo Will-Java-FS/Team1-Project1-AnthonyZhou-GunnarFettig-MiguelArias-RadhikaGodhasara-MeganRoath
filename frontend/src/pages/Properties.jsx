@@ -58,7 +58,8 @@ export default function Properties() {
         } catch (error) {
             console.error('Error on property addition attempt!', error);
         }
-    }
+
+    };
 
     const deleteClicked = async (propertyId, event) => {
         event.preventDefault();
