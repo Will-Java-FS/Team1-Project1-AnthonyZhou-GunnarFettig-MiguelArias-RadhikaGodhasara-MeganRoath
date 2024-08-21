@@ -29,7 +29,7 @@ public class PropertyModel{
      * @owner_id Foreign key in properties table from user table
      */
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "owner_id")
     private UserModel user;
 
     /**

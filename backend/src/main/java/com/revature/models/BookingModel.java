@@ -19,7 +19,7 @@ public class BookingModel {
     private Long booking_id;
     @Column(name = "property_id")
     private Long property_id;
-    @Column(name = "user_id")
+    @Column(name = "renter_id")
     private Long guest_id;
     @Column
     private LocalDate start_date;
