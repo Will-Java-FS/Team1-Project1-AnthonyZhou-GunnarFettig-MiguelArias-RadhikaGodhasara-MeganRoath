@@ -135,7 +135,7 @@ export default function Properties() {
                             </NumberInputStepper>
                         </NumberInput>
                     </FormControl>
-                    <FormControl isRequired>
+                    <FormControl>
                         <FormLabel>Pets</FormLabel>
                         <Checkbox isChecked={pets} onChange={(event) => setPets(event.target.checked)}>Allow Pets</Checkbox>
                     </FormControl>
