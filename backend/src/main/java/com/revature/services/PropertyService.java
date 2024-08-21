@@ -58,6 +58,12 @@ public class PropertyService {
      * @return the created {@link PropertyModel} entity
      */
     public PropertyModel createProperty(PropertyModel property) {
+
+        if(property.getUser() == null || property.getAddress() == null || property.getCity() == null || 
+            property.getState() == null || property.getZipcode() == null || property.getPrice() == null ||
+            property.getBedrooms() == null || property.getBathrooms() == null || property.getGuests() == null){
+            throw new IllegalArgumentException("Required fields cannot be null");
+        }
         return propertyRepo.save(property);
     }
 
