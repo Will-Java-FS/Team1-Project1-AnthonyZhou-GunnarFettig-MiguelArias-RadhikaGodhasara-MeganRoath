@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link as ReactRouterLink, Navigate, useNavigate } from "react-router-dom";
-import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Input, Button, Heading } from '@chakra-ui/react'
+import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Input, Button, Heading, Flex, Box } from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
@@ -37,21 +37,26 @@ export default function Login() {
     const passEmptyError = password === '';
     
     return (
-        <form>
-            <Heading size='md'>Login</Heading>
-            <FormControl isRequired>
-                <FormLabel>Username</FormLabel>
-                <Input type = "text" placeholder = "Enter Username" onChange={event => setUsername(event.currentTarget.value)} />
-                {userEmptyError && loginFailed ? <FormErrorMessage>Username is required.</FormErrorMessage> : null}
-            </FormControl>
-            <FormControl isRequired>
-                <FormLabel>Password</FormLabel>
-                <Input type = "password" placeholder = "Enter Password" onChange={event => setPassword(event.currentTarget.value)} />
-                {passEmptyError && loginFailed ? <FormErrorMessage>Password is required.</FormErrorMessage> : null}
-            </FormControl>
-            <Button type = "submit" onClick = {loginClicked}>Login</Button>
-            <ChakraLink as={ReactRouterLink} to="/register">Dont have an account? Sign up here.</ChakraLink>
-            {loginFailed ? <FormErrorMessage>Login failed.</FormErrorMessage> : null}
-        </form>
+        <Flex width="full" align="center" justifyContent="center">
+            <form>
+                <Box p='5' textAlign='center'>
+                    <Heading size='lg'>Login</Heading>
+                </Box>
+                <FormControl isRequired>
+                    <FormLabel>Username</FormLabel>
+                    <Input type = "text" placeholder = "Enter Username" onChange={event => setUsername(event.currentTarget.value)} />
+                    {userEmptyError && loginFailed ? <FormErrorMessage>Username is required.</FormErrorMessage> : null}
+                </FormControl>
+                <FormControl isRequired>
+                    <FormLabel>Password</FormLabel>
+                    <Input type = "password" placeholder = "Enter Password" onChange={event => setPassword(event.currentTarget.value)} />
+                    {passEmptyError && loginFailed ? <FormErrorMessage>Password is required.</FormErrorMessage> : null}
+                </FormControl>
+                <br/>
+                <Button type = "submit" onClick = {loginClicked}>Login</Button>
+                <ChakraLink as={ReactRouterLink} to="/register"> Dont have an account? Sign up here.</ChakraLink>
+                {loginFailed ? <FormErrorMessage>Login failed.</FormErrorMessage> : null}
+            </form>
+        </Flex>
     )
 }
