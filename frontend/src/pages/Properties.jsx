@@ -16,13 +16,14 @@ export default function Properties() {
     const [bedrooms, setBedrooms] = useState('');
     const [bathrooms, setBathrooms] = useState('');
     const [pets, setPets] = useState(false);
+    const [available, setAvailable] = useState(false);
 
     const [properties, setProperties] = useState([]);
 
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get("https://localhost:8080/properties");
+                const response = await axios.get("http://localhost:8080/properties");
                 if (response.status === 200) {
                     setProperties(response.data.results.filter((value) => value.owner.username === AuthenticationService.loggedInUsername()));
                 }
@@ -37,18 +38,19 @@ export default function Properties() {
     const newPropertyClicked = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post("https://localhost:8080/properties", {
-                ownerId: AuthenticationService.loggedInUserId(),
-                description: description,
+            const response = await axios.post("http://localhost:8080/properties", {
+                ownerID: parseInt(AuthenticationService.loggedInUserId(), 10),
                 address: address,
                 city: city,
                 state: state,
                 zipcode: zipcode,
+                description: description,
                 price: parseFloat(price),
                 bedrooms: parseInt(bedrooms, 10),
                 bathrooms: parseInt(bathrooms, 10),
                 numOfGuests: parseInt(maxGuests, 10),
-                pets: pets
+                pets: pets,
+                available: available
             });
             if (response.status === 201) {
                 setProperties([...properties, response.data]);
@@ -61,7 +63,7 @@ export default function Properties() {
     const deleteClicked = async (propertyId, event) => {
         event.preventDefault();
         try {
-            const response = await axios.delete(`https://localhost:8080/properties/${propertyId}`);
+            const response = await axios.delete(`http://localhost:8080/properties/${propertyId}`);
             if (response.status === 200) {
                 setProperties(properties.filter((value) => value.id !== propertyId));
             }
@@ -135,6 +137,12 @@ export default function Properties() {
                         <FormLabel>Pets</FormLabel>
                         <Checkbox isChecked={pets} onChange={(event) => setPets(event.target.checked)}>Allow Pets</Checkbox>
                     </FormControl>
+
+                    <FormControl isRequired>
+                        <FormLabel>Available</FormLabel>
+                        <Checkbox isChecked={available} onChange={(event) => setAvailable(event.target.checked)}>Is it available?</Checkbox>
+                    </FormControl>
+
 
                     <Button type="submit" onClick={newPropertyClicked}>Add Property</Button>
                 </form>
