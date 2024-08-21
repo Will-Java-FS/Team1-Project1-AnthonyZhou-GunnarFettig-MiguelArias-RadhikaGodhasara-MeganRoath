@@ -31,10 +31,18 @@ public class UserController {
     @Autowired
     private UserModelDetailService userModelDetailService;
 
-    @PostMapping("/register")
-    public UserModel registerUser(@RequestBody UserModel userModel){
+  @PostMapping("/register")
+    public ResponseEntity<String> registerUser(@RequestBody UserModel userModel) {
+        Optional<UserModel> existingUser = userRepo.findByUsername(userModel.getUsername());
+
+        if (existingUser.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists.");
+        }
+
         userModel.setPasswordHash(passwordEncoder.encode(userModel.getPasswordHash()));
-        return userRepo.save(userModel);
+        userRepo.save(userModel);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully.");
     }
 
     @PostMapping("/authenticate")
