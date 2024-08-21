@@ -28,7 +28,6 @@ CREATE TABLE properties (
     bathrooms BIGINT NOT NULL,
     num_of_guests BIGINT NOT NULL,
     pets BOOLEAN,
-    available BOOLEAN NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
