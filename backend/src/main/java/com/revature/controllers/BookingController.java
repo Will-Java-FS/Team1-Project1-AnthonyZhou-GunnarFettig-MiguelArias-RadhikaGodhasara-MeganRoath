@@ -7,22 +7,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.function.LongFunction;
 
 @RestController
 public class BookingController {
 
-    //@Autowired
     private BookingService bookingService;
-
 
     @Autowired
     public BookingController(BookingService bookingService){
         this.bookingService = bookingService;
-    }
-
-    @GetMapping("/")
-    public String index() {
-        return "Testing Endpoints";
     }
 
     //Get all bookings that are available
@@ -60,6 +54,14 @@ public class BookingController {
         @param: Size
         @param: Owner
      */
+    @GetMapping("/bookings/{property_id}")
+    public ResponseEntity<String> getPropertyByID(@RequestParam Long property_id){
+        BookingModel property = bookingService.getBookingByProperty(property_id);
+        if(property == null){
+            return ResponseEntity.status(404).body("No property found for given id.");
+        }
+        return ResponseEntity.status(200).body(property.toString());
+    }
 
     @DeleteMapping("/bookings")
     public ResponseEntity<String> deleteBooking(@RequestParam BookingModel booking){
