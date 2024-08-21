@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * Provides endpoints for CRUD operations and querying properties based on different criteria.
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class PropertyController {
 
     // Service for managing property-related operations

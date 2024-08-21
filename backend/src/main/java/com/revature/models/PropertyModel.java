@@ -19,22 +19,18 @@ public class PropertyModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    // @OneToMany(fetch = FetchType.EAGER)
-    // @Column(name = "owner_id") 
-    // private Long ownerID;
     
     /**
      * Many properties can be owned by one owner.
-     * This represents a many-to-one relationship with the OwnerModel.
-     * The `fetch = FetchType.EAGER` ensures that the owner is loaded when the property is loaded.
+     * This represents a many-to-one relationship with the UserModel.
+     * The `fetch = FetchType.EAGER` ensures that the user is loaded when the property is loaded.
      * 
      * @owner The owner of the property
-     * @owner_id Foreign key in properties table from owner table
+     * @owner_id Foreign key in properties table from user table
      */
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "owner_id")
-    private OwnerModel owner;
+    @JoinColumn(name = "user_id")
+    private UserModel user;
 
     /**
      * @address Street address of the property

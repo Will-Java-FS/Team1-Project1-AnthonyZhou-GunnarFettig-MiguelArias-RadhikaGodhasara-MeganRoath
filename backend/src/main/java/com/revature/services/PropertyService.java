@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * Service class for managing {@link PropertyModel} entities.
- * Provides business logic and interactions with the data layer via {@link PropertyRepo} and {@link OwnerRepo}.
+ * Provides business logic and interactions with the data layer via {@link PropertyRepo} and {@link UserRepo}.
  */
 @Service
 public class PropertyService {
@@ -17,19 +17,19 @@ public class PropertyService {
     // Repository for accessing PropertyModel entities
     @Autowired
     private PropertyRepo propertyRepo;
-    // Repository for accessing OwnerModel entities
+
+    // Repository for accessing UserModel entities
     @Autowired
-    private OwnerRepo ownerRepo;
+    private UserRepo userRepo;
 
     /**
      * Constructor for PropertyService.
      * 
      * @param propertyRepo repository for PropertyModel entities
-     * @param ownerRepo repository for OwnerModel entities
      */
-    public PropertyService (PropertyRepo propertyRepo, OwnerRepo ownerRepo){
+    public PropertyService (PropertyRepo propertyRepo, UserRepo UserRepo){
         this.propertyRepo = propertyRepo;
-        this.ownerRepo = ownerRepo;
+        this.userRepo = userRepo;
     }
 
     /**
@@ -129,32 +129,47 @@ public class PropertyService {
     /**
      * Retrieves properties owned by a specific owner.
      * 
-     * @param ownerId the ID of the owner
+     * @param userId the ID of the user
      * @return a list of {@link PropertyModel} entities owned by the specified owner
+     * @throws RuntimeException if the user is not found or does not have the role of an owner
      */
-    public List<PropertyModel> getPropertiesByOwnerId(Long ownerId) {
-        return propertyRepo.findByOwnerId(ownerId);
+    public List<PropertyModel> getPropertiesByOwnerId(Long userId) {
+
+        Optional<UserModel> userOptional = userRepo.findById(userId);
+
+        if(userOptional.isEmpty()){
+            throw new RuntimeException("User not found");
+        }
+
+        UserModel user = userOptional.get();
+
+        if(!user.getRole().contains("owner")){
+            throw new RuntimeException("User does not have the role of an owner");
+        }
+
+        return propertyRepo.findByUser(user);
     }
 
      /**
      * Updates a property if it belongs to a specific owner.
      * 
-     * @param ownerId the ID of the owner
+     * @param userId the ID of the user
      * @param propertyId the ID of the property to be updated
      * @param updatedProperty the {@link PropertyModel} entity with updated information
      * @return the updated {@link PropertyModel} entity
      * @throws RuntimeException if the property is not found or does not belong to the specified owner
      */
-    public PropertyModel updatePropertyByOwner(Long ownerId, Long propertyId, PropertyModel updatedProperty) {
+    public PropertyModel updatePropertyByOwner(Long userId, Long propertyId, PropertyModel updatedProperty) {
 
         Optional<PropertyModel> existingPropertyOptional = propertyRepo.findById(propertyId);
-        PropertyModel existingProperty = existingPropertyOptional.get();
-
+        
         if (existingPropertyOptional.isEmpty()) {
             throw new RuntimeException("Property not found");
         }       
 
-        if (!existingProperty.getOwner().getId().equals(ownerId)) {
+        PropertyModel existingProperty = existingPropertyOptional.get();
+
+        if (!existingProperty.getUser().getId().equals(userId)) {
             throw new RuntimeException("Property does not belong to the specified owner");
         }
 
@@ -166,20 +181,21 @@ public class PropertyService {
     /**
      * Deletes a property if it belongs to a specific owner.
      * 
-     * @param ownerId the ID of the owner
+     * @param userId the ID of the user
      * @param propertyId the ID of the property to be deleted
      * @throws RuntimeException if the property is not found or does not belong to the specified owner
      */
-    public void deletePropertyByOwner(Long ownerId, Long propertyId) {
+    public void deletePropertyByOwner(Long userId, Long propertyId) {
 
         Optional<PropertyModel> existingPropertyOptional = propertyRepo.findById(propertyId);
-        PropertyModel existingProperty = existingPropertyOptional.get();
-
+        
         if (existingPropertyOptional.isEmpty()) {
             throw new RuntimeException("Property not found");
         }        
 
-        if (!existingProperty.getOwner().getId().equals(ownerId)) {
+        PropertyModel existingProperty = existingPropertyOptional.get();
+
+        if (!existingProperty.getUser().getId().equals(userId)) {
             throw new RuntimeException("Property does not belong to the specified owner");
         }
 
@@ -189,20 +205,25 @@ public class PropertyService {
     /**
      * Adds a new property for a specific owner.
      * 
-     * @param ownerId the ID of the owner
+     * @param userId the ID of the user
      * @param newProperty the {@link PropertyModel} entity to be added
      * @return the saved {@link PropertyModel} entity
-     * @throws RuntimeException if the owner is not found
+     * @throws RuntimeException if the owner is not found or does not have the role of an owner
      */
-    public PropertyModel addPropertyByOwner(Long ownerId, PropertyModel newProperty) {
-        Optional<OwnerModel> ownerOptional = ownerRepo.findById(ownerId);
+    public PropertyModel addPropertyByOwner(Long userId, PropertyModel newProperty) {
+        Optional<UserModel> userOptional = userRepo.findById(userId);
 
-        if (ownerOptional.isEmpty()) {
+        if (userOptional.isEmpty()) {
             throw new RuntimeException("Owner not found");
         }
 
-        OwnerModel owner = ownerOptional.get();
-        newProperty.setOwner(owner);
+        UserModel owner = userOptional.get();
+
+        if(!owner.getRole().contains("owner")){
+            throw new RuntimeException("User does not have the role of an owner");
+        }
+
+        newProperty.setUser(owner);
 
         return propertyRepo.save(newProperty);
     } 

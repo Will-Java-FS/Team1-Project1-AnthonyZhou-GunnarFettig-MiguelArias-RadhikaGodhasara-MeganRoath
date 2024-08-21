@@ -1,6 +1,6 @@
 package com.revature.repositories;
 
-import com.revature.models.PropertyModel;
+import com.revature.models.*;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -38,10 +38,10 @@ public interface PropertyRepo extends JpaRepository<PropertyModel, Long> {
     List<PropertyModel> findByZipcode(String zipcode);
 
     /**
-     * Finds a list of properties owned by a specific owner.
+     * Finds a list of properties associated with a specific user.
      * 
-     * @param ownerId the ID of the owner
-     * @return a list of PropertyModel entities owned by the specified owner
+     * @param user the {@link UserModel} entity associated with the properties
+     * @return a list of {@link PropertyModel} entities that belong to the specified user
      */
-    List<PropertyModel> findByOwnerId(Long ownerId);
+    List<PropertyModel> findByUser(UserModel user);
 }
