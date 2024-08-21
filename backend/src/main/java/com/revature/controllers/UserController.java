@@ -9,6 +9,8 @@ import com.revature.services.UserModelDetailService;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,28 +33,24 @@ public class UserController {
     @Autowired
     private UserModelDetailService userModelDetailService;
 
-    @PostMapping("/register")
-    public UserModel registerUser(@RequestBody UserModel userModel){
+  @PostMapping("/register")
+    public ResponseEntity<String> registerUser(@RequestBody UserModel userModel) {
+        Optional<UserModel> existingUser = userRepo.findByUsername(userModel.getUsername());
+
+        if (existingUser.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists.");
+        }
+
         userModel.setPasswordHash(passwordEncoder.encode(userModel.getPasswordHash()));
-        return userRepo.save(userModel);
+        userRepo.save(userModel);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully.");
     }
 
     @PostMapping("/authenticate")
-    // public String authAndGetToken(@RequestBody LoginForm loginForm){
-
-    //     Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-    //         loginForm.username(),loginForm.password()
-    //     ));
-
-    //     if (authentication.isAuthenticated()){
-    //         return jwtService.generateToken(userModelDetailService.loadUserByUsername(loginForm.username()));
-    //     }else {
-    //         throw new UsernameNotFoundException("invalid");
-    //     }
-    // }
     public AuthResponse authAndGetToken(@RequestBody LoginForm loginForm){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-            loginForm.username(), loginForm.password()
+                loginForm.username(), loginForm.password()
         ));
 
         if(authentication.isAuthenticated()){

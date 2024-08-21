@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.function.LongFunction;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class BookingController {
 
     private BookingService bookingService;

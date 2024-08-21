@@ -9,6 +9,7 @@ export default function Logout() {
             AuthenticationService.logout();
             return <Navigate to = '/login' />
         }
+        
         return (
             <>
             <HStack spacing = '10px' align = 'right'>

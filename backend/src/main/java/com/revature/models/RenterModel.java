@@ -1,52 +1,52 @@
-package com.revature.models;
+// package com.revature.models;
 
-import jakarta.persistence.*;
+// import jakarta.persistence.*;
 
-import java.util.List;
+// //import java.util.List;
 
-@Entity
-@Table(name = "renters")
-public class RenterModel {
+// @Entity
+// @Table(name = "renters")
+// public class RenterModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;  // Updated to Long to match BIGINT in the database
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;  // Updated to Long to match BIGINT in the database
 
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserModel user;
+//     @OneToOne
+//     @JoinColumn(name = "user_id", nullable = false)
+//     private UserModel user;
 
 
-    @OneToMany
-    @JoinColumn(name = "renter_id")
-    private List<BookingModel> bookings;
+//     // @OneToMany
+//     // @JoinColumn(name = "renter_id")
+//     // private List<BookingModel> bookings;
 
-    // Constructors
-    public RenterModel() {}
+//     // Constructors
+//     public RenterModel() {}
 
-    public RenterModel(UserModel user) {
-        this.user = user;
-    }
+//     public RenterModel(UserModel user) {
+//         this.user = user;
+//     }
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
+//     // Getters and Setters
+//     public Long getId() {
+//         return id;
+//     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//     public void setId(Long id) {
+//         this.id = id;
+//     }
 
-    public UserModel getUser() {
-        return user;
-    }
+//     public UserModel getUser() {
+//         return user;
+//     }
 
-    public void setUser(UserModel user) {
-        this.user = user;
-    }
+//     public void setUser(UserModel user) {
+//         this.user = user;
+//     }
 
-    public List<BookingModel> getBookings() {
-        return bookings;
-    }
+//     // public List<BookingModel> getBookings() {
+//     //     return bookings;
+//     // }
 
-}
+// }

@@ -7,11 +7,11 @@ import AuthenticationService from "../components/AuthenticationService";
 export default function Bookings() {
     const [bookings, setBookings] = useState([]);
 
-    useEffect(async () => {
-        await axios.get("https://localhost:8000/bookings")
+    useEffect(() => {
+        axios.get("http://localhost:8000/bookings")
         .then(response => {
             console.log(response.data);
-            if (response.ok) {
+            if (response.status == 200) {
                 setBookings(response.data.results);
             }
         })
@@ -23,10 +23,10 @@ export default function Bookings() {
     if (AuthenticationService.isLoggedInRenter()) {
         const cancelBooking = async (bookingId, event) => {
             event.preventDefault();
-            await axios.delete("https://localhost:8080/bookings/" + bookingId)
+            await axios.delete("http://localhost:8080/bookings/" + bookingId)
             .then(response => {
                 console.log(response.data);
-                if (response.ok) {
+                if (response.status == 200) {
                     setBookings(bookings.filter((value) => value.id != bookingId));
                 }
             })
