@@ -59,21 +59,23 @@ export default function Properties() {
             console.error('Error on property addition attempt!', error);
         }
 
-        
-        const deleteClicked = async (propertyId, event) => {
-            event.preventDefault();
-            await axios.delete("http://localhost:8080/properties/" + propertyId)
-            .then(response => {
-                console.log(response.data);
-                if (response.status == 200) {
-                    setProperties(properties.filter((value) => value.id != propertyId));
-                }
-            })
-            .catch(error => {
-                console.error('Error on property deletion attempt!', error);
-            });
-        }
     };
+
+
+
+    const deleteClicked = async (propertyId, event) => {
+        event.preventDefault();
+        await axios.delete("http://localhost:8080/properties/" + propertyId)
+        .then(response => {
+            console.log(response.data);
+            if (response.status == 200) {
+                setProperties(properties.filter((value) => value.id != propertyId));
+            }
+        })
+        .catch(error => {
+            console.error('Error on property deletion attempt!', error);
+        });
+    }
 
     if (AuthenticationService.isLoggedInOwner()) {
         return (
