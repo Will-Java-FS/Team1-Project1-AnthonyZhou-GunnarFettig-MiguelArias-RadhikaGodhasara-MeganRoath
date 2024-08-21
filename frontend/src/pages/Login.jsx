@@ -19,6 +19,7 @@ export default function Login() {
         })
         .then(response => {
             if (response.status == 200) {
+                console.log(response.data)
                 setLoginFailed(false);
                 if (response.data.role === "Renter") {AuthenticationService.loginRenter(response.data.username, response.data.userId);}
                 else {AuthenticationService.loginOwner(response.data.username, response.data.userId);}

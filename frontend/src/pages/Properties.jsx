@@ -1,72 +1,72 @@
 import { useState, useEffect } from 'react';
 import { Navigate, Link as ReactRouterLink } from 'react-router-dom';
-import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Input, Button, NumberInput, NumberInputField,
+import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Input, Button, NumberInput, NumberInputField, Flex,
         NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, TableContainer, Table, Thead, Tbody, Tr, Th, Td, Heading, Checkbox } from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
 export default function Properties() {
     const [description, setDescription] = useState('');
-    const [maxGuests, setMaxGuests] = useState('');
+    const [maxGuests, setMaxGuests] = useState(15);
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
-    const [zipcode, setZipcode] = useState('');
-    const [price, setPrice] = useState('');
-    const [bedrooms, setBedrooms] = useState('');
-    const [bathrooms, setBathrooms] = useState('');
+    const [zipcode, setZipcode] = useState();
+    const [price, setPrice] = useState();
+    const [bedrooms, setBedrooms] = useState(5);
+    const [bathrooms, setBathrooms] = useState(5);
     const [pets, setPets] = useState(false);
-    const [available, setAvailable] = useState(false);
 
     const [properties, setProperties] = useState([]);
 
     useEffect(() => {
         const fetchProperties = async () => {
-            try {
-                const response = await axios.get("http://localhost:8080/properties");
+            AuthenticationService.axiosToken();
+            await axios.get("http://localhost:8080/owner/" + AuthenticationService.loggedInUserId())
+            .then(response => {
                 if (response.status === 200) {
-                    setProperties(response.data.results.filter((value) => value.owner.username === AuthenticationService.loggedInUsername()));
+                    setProperties(response.data);
                 }
-            } catch (error) {
-                console.error('Error when attempting to retrieve properties!', error);
-            }
+            })
+            .catch(error => {
+                console.error('Error retriving properties!', error);
+            });
         };
 
         fetchProperties();
-    }, []);
+    }, [properties]);
 
     const newPropertyClicked = async (event) => {
         event.preventDefault();
-        try {
-            const response = await axios.post("http://localhost:8080/properties", {
-                ownerID: parseInt(AuthenticationService.loggedInUserId(), 10),
-                address: address,
-                city: city,
-                state: state,
-                zipcode: zipcode,
-                description: description,
-                price: parseFloat(price),
-                bedrooms: parseInt(bedrooms, 10),
-                bathrooms: parseInt(bathrooms, 10),
-                numOfGuests: parseInt(maxGuests, 10),
-                pets: pets,
-                available: available
-            });
+        await axios.post("http://localhost:8080/owner/" + AuthenticationService.loggedInUserId(), {
+            userID: Number(AuthenticationService.loggedInUserId()),
+            address: address,
+            city: city,
+            state: state,
+            zipcode: zipcode,
+            description: description,
+            price: price,
+            bedrooms: bedrooms,
+            bathrooms: bathrooms,
+            guests: maxGuests,
+            pets: pets
+        })
+        .then(response => {
             if (response.status === 201) {
                 setProperties([...properties, response.data]);
             }
-        } catch (error) {
-            console.error('Error on property addition attempt!', error);
-        }
-
+        })
+        .catch(error => {
+            console.error('Error adding a new property!', error);
+        });
     };
 
     const deleteClicked = async (propertyId, event) => {
         event.preventDefault();
-        await axios.delete("http://localhost:8080/properties/" + propertyId)
+        await axios.delete("http://localhost:8080/owner/" + AuthenticationService.loggedInUserId() + "/property/" + propertyId)
         .then(response => {
             console.log(response.data);
-            if (response.status == 200) {
+            if (response.status == 204) {
                 setProperties(properties.filter((value) => value.id != propertyId));
             }
         })
@@ -77,7 +77,7 @@ export default function Properties() {
 
     if (AuthenticationService.isLoggedInOwner()) {
         return (
-            <>
+            <Flex p="3">
                 <form>
                     <Heading size='md'>Add a new property</Heading>
 
@@ -95,7 +95,7 @@ export default function Properties() {
                     </FormControl>
                     <FormControl isRequired>
                         <FormLabel>Zip Code</FormLabel>
-                        <Input type="text" placeholder="Enter Zip Code" onChange={event => setZipcode(event.currentTarget.value)} />
+                        <Input type="number" placeholder="Enter Zip Code" onChange={event => setZipcode(event.currentTarget.value)} />
                     </FormControl>
                     <FormControl isRequired>
                         <FormLabel>Description</FormLabel>
@@ -103,7 +103,7 @@ export default function Properties() {
                     </FormControl>
                     <FormControl isRequired>
                         <FormLabel>Price</FormLabel>
-                        <Input type="text" placeholder="Enter Price" onChange={event => setPrice(event.currentTarget.value)} />
+                        <Input type="number" placeholder="Enter Price" onChange={event => setPrice(event.currentTarget.value)} />
                     </FormControl>
                     <FormControl isRequired>
                         <FormLabel>Bedrooms</FormLabel>
@@ -135,17 +135,10 @@ export default function Properties() {
                             </NumberInputStepper>
                         </NumberInput>
                     </FormControl>
-
                     <FormControl isRequired>
                         <FormLabel>Pets</FormLabel>
                         <Checkbox isChecked={pets} onChange={(event) => setPets(event.target.checked)}>Allow Pets</Checkbox>
                     </FormControl>
-
-                    <FormControl isRequired>
-                        <FormLabel>Available</FormLabel>
-                        <Checkbox isChecked={available} onChange={(event) => setAvailable(event.target.checked)}>Is it available?</Checkbox>
-                    </FormControl>
-
 
                     <Button type="submit" onClick={newPropertyClicked}>Add Property</Button>
                 </form>
@@ -155,7 +148,6 @@ export default function Properties() {
                         <Thead>
                             <Tr>
                                 <Th>Description</Th>
-                                <Th>Max Guests</Th>
                                 <Th>Address</Th>
                                 <Th>City</Th>
                                 <Th>State</Th>
@@ -163,7 +155,7 @@ export default function Properties() {
                                 <Th>Price</Th>
                                 <Th>Bedrooms</Th>
                                 <Th>Bathrooms</Th>
-                                <Th>Number of Guests</Th>
+                                <Th>Max Guests</Th>
                                 <Th>Pets</Th>
                                 <Th>Edit</Th>
                                 <Th>Delete</Th>
@@ -173,7 +165,6 @@ export default function Properties() {
                             {properties && properties.map && properties.map(property =>
                                 <Tr key={property.id}>
                                     <Td>{property.description}</Td>
-                                    <Td>{property.maxGuests}</Td>
                                     <Td>{property.address}</Td>
                                     <Td>{property.city}</Td>
                                     <Td>{property.state}</Td>
@@ -181,10 +172,10 @@ export default function Properties() {
                                     <Td>{property.price}</Td>
                                     <Td>{property.bedrooms}</Td>
                                     <Td>{property.bathrooms}</Td>
-                                    <Td>{property.num_of_guests}</Td>
+                                    <Td>{property.guests}</Td>
                                     <Td>{property.pets ? 'Yes' : 'No'}</Td>
                                     <Td>
-                                        <ChakraLink as={ReactRouterLink} to={`/property/${property.id}`}>
+                                        <ChakraLink as={ReactRouterLink} to={`/properties/${property.id}`}>
                                             <Button variant="link">Edit</Button>
                                         </ChakraLink>
                                     </Td>
@@ -198,7 +189,7 @@ export default function Properties() {
                         </Tbody>
                     </Table>
                 </TableContainer>
-            </>
+            </Flex>
         );
     } else {
         return <Navigate to='/login' />

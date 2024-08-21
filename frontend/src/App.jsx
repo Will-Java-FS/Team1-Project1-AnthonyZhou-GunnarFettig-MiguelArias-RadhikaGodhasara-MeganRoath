@@ -21,12 +21,10 @@ export default function App() {
           			<Route path="/login" element={<Login />} />
           			<Route path="/register" element={<Register />} />
           			<Route path="/bookings" element={<Bookings />} />
-          			<Route path="/rent" element={<Rentals />}>
-            			<Route path="/rent/:id" element={<Rent />} />
-          			</Route>
-          			<Route path="/properties" element={<Properties />}>
-            			<Route path="/properties/:id" element={<PropertiesEdit />} />
-          			</Route>
+          			<Route path="/rent" element={<Rentals />} />
+            		<Route path="/rent/:id" element={<Rent />} />
+          			<Route path="/properties" element={<Properties />} />
+            		<Route path="/properties/:id" element={<PropertiesEdit />} />
         		</Route>
       		</Routes>
     	</BrowserRouter>
