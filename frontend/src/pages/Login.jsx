@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link as ReactRouterLink, Navigate, useNavigate } from "react-router-dom";
+import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Input, Button, Heading, Flex, Box } from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
@@ -13,6 +13,7 @@ export default function Login() {
     const loginClicked = async (event) => {
         event.preventDefault();
 
+        AuthenticationService.axiosToken();
         await axios.post("http://localhost:8080/authenticate", {
                 username: username,
                 passwordHash: password
@@ -21,7 +22,7 @@ export default function Login() {
             if (response.status == 200) {
                 console.log(response.data)
                 setLoginFailed(false);
-                if (response.data.role === "Renter") {AuthenticationService.loginRenter(response.data.username, response.data.userId);}
+                if (response.data.role === "renter") {AuthenticationService.loginRenter(response.data.username, response.data.userId);}
                 else {AuthenticationService.loginOwner(response.data.username, response.data.userId);}
                 AuthenticationService.setUpToken(response.data.token);
                 navigate('/redirect');
@@ -39,7 +40,7 @@ export default function Login() {
     
     return (
         <Flex width="full" align="center" justifyContent="center">
-            <form>
+            <form onSubmit={loginClicked}>
                 <Box p='5' textAlign='center'>
                     <Heading size='lg'>Login</Heading>
                 </Box>
@@ -54,7 +55,7 @@ export default function Login() {
                     {passEmptyError && loginFailed ? <FormErrorMessage>Password is required.</FormErrorMessage> : null}
                 </FormControl>
                 <br/>
-                <Button type = "submit" onClick = {loginClicked}>Login</Button>
+                <Button type = "submit">Login</Button>
                 <ChakraLink as={ReactRouterLink} to="/register"> Dont have an account? Sign up here.</ChakraLink>
                 {loginFailed ? <FormErrorMessage>Login failed.</FormErrorMessage> : null}
             </form>

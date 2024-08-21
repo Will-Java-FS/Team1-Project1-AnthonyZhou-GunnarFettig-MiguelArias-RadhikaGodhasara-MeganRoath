@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -16,15 +17,17 @@ public class BookingModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long booking_id;
+    private Long bookingId;
     @Column(name = "property_id")
-    private Long property_id;
+    private Long propertyId;
     @Column(name = "user_id")
-    private Long guest_id;
-    @Column
-    private LocalDate start_date;
-    @Column
-    private LocalDate end_date;
+    private Long guestId;
+    @Column(name = "start_date")
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate startDate;
+    @Column(name = "end_date")
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate endDate;
     @Column(nullable = false)
     private String status;
 
@@ -34,11 +37,11 @@ public class BookingModel {
 
     @Override
     public String toString(){
-        return "Booking{ booking_id=" + booking_id +
-                ", property_id:" + property_id +
-                ", guest_id:" +guest_id+
-                ", check in on: " + start_date+
-                ", check out on" +end_date +"}";
+        return "Booking{ booking_id=" + bookingId +
+                ", property_id:" + propertyId +
+                ", guest_id:" +guestId+
+                ", check in on: " + startDate+
+                ", check out on" +endDate +"}";
     }
 
     /* NEED to reference renter's id

@@ -1,46 +1,54 @@
 import { useState, useEffect } from 'react';
-import  { Navigate, Link as ReactRouterLink } from 'react-router-dom'
+import  { Navigate, Link as ReactRouterLink, useParams, useNavigate } from 'react-router-dom'
 import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Button, Input, NumberInput, NumberInputField,
         NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Heading} from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
 export default function Rent() {
-    const [start, setStart] = useState();
-    const [end, setEnd] = useState();
-    const [numGuests, setNumGuests] = useState();
+    const navigate = useNavigate();
+    const { id } = useParams();
 
-    const [rental, setRental] = useState();
+    const [start, setStart] = useState('');
+    const [end, setEnd] = useState('');
+    const [numGuests, setNumGuests] = useState(1);
+
+    const [rental, setRental] = useState('');
     useEffect(() => {
-        axios.get("http://localhost:8000/properties/" + window.location.pathname)
+        AuthenticationService.axiosToken();
+        axios.get("http://localhost:8080/properties/" + id)
         .then(response => {
             console.log(response.data);
             if (response.status == 200) {
-                setRental(response.data)
+                setRental(response.data);
             }
         })
         .catch(error => {
-            console.error('Error when attempting to retrieve property id: ' + window.location.pathname, error);
+            console.error('Error when attempting to retrieve property id: ' + id, error);
         });
-    }, [rental]);
+    }, []);
 
-    if (AuthenticationService.isLoggedInRenter()) {
+    if (AuthenticationService.loggedInUserRole() == "renter") {
         const rentClicked = async (event) => {
             event.preventDefault();
-            await axios.patch("http://localhost:8080/bookings/" + window.location.pathname, {
-                renterId: AuthenticationService.loggedInUserId(),
+            AuthenticationService.axiosToken();
+            await axios.post("http://localhost:8080/bookings", {
+                propertyId: Number(id),
+                guestId: Number(AuthenticationService.loggedInUserId()),
                 startDate: start,
                 endDate: end,
-                numGuests: numGuests
+                numGuests: numGuests,
+                status: 'confirmed'
             })
             .then(response => {
                 console.log(response.data);
                 if (response.status == 200) {
-                    setRental(response.data)
+                    setRental(response.data);
+                    navigate("/bookings");
                 }
             })
             .catch(error => {
-                console.error('Error updating property!', error);
+                console.error('Error renting property!', error);
             });
         }
 
@@ -48,13 +56,14 @@ export default function Rent() {
         // TODO: If submit fails show message and/or change colors, etc
         return (
             <>
-            <Heading size='md'>Rent this property</Heading>
+            <Heading size='lg'>Rent this property</Heading>
             <ChakraLink as={ReactRouterLink} to="/rent"><Button>Back</Button></ChakraLink>
-            <Heading size='sm'>Title: {rental.title}</Heading>
-            <Heading size='sm'>Description: {rental.description}</Heading>
-            <Heading size='sm'>Max Guests: {rental.maxGuests}</Heading>
-            <Heading size='sm'>Address: {rental.location}</Heading>
-            <form>
+            <Heading size='md'>Description: {rental.description}</Heading>
+            <Heading size='md'>Bedrooms: {rental.bedrooms}</Heading>
+            <Heading size='md'>Bathrooms: {rental.bathrooms}</Heading>
+            <Heading size='md'>Address: {rental.address +", "+ rental.city +", "+ rental.state +" "+ rental.zipcode}</Heading>
+            <Heading size='md'>Pets allowed: {rental.pets ? 'Yes' : 'No'}</Heading>
+            <form  onSubmit={rentClicked}>
                 <FormControl isRequired>
                     <FormLabel>Start Date</FormLabel>
                     <Input type = "date" placeholder = "Enter Start Date" onChange={event => setStart(event.currentTarget.value)} />
@@ -65,7 +74,7 @@ export default function Rent() {
                 </FormControl>
                 <FormControl isRequired>
                     <FormLabel>Number Of Guests</FormLabel>
-                    <NumberInput onChange={event => setNumGuests(event.currentTarget.value)} max = {rental.maxGuests} min = {1}>
+                    <NumberInput onSubmit={event => setNumGuests(event.target.value)} max = {rental.guests} min = {1}>
                         <NumberInputField />
                         <NumberInputStepper>
                             <NumberIncrementStepper />
@@ -73,7 +82,8 @@ export default function Rent() {
                         </NumberInputStepper>
                     </NumberInput>
                 </FormControl>
-                <Button type = "submit" onClick = {rentClicked}>Rent</Button>
+                <br/>
+                <Button type = "submit">Rent</Button>
             </form>
             </>
         )

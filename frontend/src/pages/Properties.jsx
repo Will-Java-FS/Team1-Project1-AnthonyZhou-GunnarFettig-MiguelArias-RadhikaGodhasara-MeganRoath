@@ -75,10 +75,10 @@ export default function Properties() {
         });
     }
 
-    if (AuthenticationService.isLoggedInOwner()) {
+    if (AuthenticationService.loggedInUserRole() == "owner") {
         return (
             <Flex p="3">
-                <form>
+                <form onSubmit={newPropertyClicked}>
                     <Heading size='md'>Add a new property</Heading>
 
                     <FormControl isRequired>
@@ -140,7 +140,7 @@ export default function Properties() {
                         <Checkbox isChecked={pets} onChange={(event) => setPets(event.target.checked)}>Allow Pets</Checkbox>
                     </FormControl>
 
-                    <Button type="submit" onClick={newPropertyClicked}>Add Property</Button>
+                    <Button type="submit">Add Property</Button>
                 </form>
                 <Heading size='md'>Your Properties</Heading>
                 <TableContainer>

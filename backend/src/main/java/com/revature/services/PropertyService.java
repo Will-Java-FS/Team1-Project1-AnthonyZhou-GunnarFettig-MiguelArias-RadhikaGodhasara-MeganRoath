@@ -180,6 +180,7 @@ public class PropertyService {
         }
 
         updatedProperty.setId(propertyId);
+        updatedProperty.setUser(existingProperty.getUser());
 
         return updateProperty(propertyId, updatedProperty);
     }

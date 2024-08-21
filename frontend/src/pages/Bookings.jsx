@@ -20,7 +20,7 @@ export default function Bookings() {
         });
     }, [bookings]);
 
-    if (AuthenticationService.isLoggedInRenter()) {
+    if (AuthenticationService.AuthenticationService.loggedInUserRole() == "renter") {
         const cancelBooking = async (bookingId, event) => {
             event.preventDefault();
             await axios.delete("http://localhost:8080/bookings/" + bookingId)

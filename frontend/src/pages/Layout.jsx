@@ -6,7 +6,7 @@ export default function Layout() {
     if (window.location.pathname === "/") {return <Navigate to = '/redirect' />}
     return (
         <>
-        <Flex color = "white" bg = "grey" w = '100%' h = '80px'>
+        <Flex color = "white" bg = "grey" w = '100%' h = '80px' align="center">
             <Heading size = '2xl'>Project 1 - Property Booking</Heading>
             <Logout />
         </Flex>

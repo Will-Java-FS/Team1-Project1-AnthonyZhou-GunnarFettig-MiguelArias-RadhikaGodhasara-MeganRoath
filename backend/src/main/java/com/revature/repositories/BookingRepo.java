@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface BookingRepo extends JpaRepository<BookingModel, Long> {
-    //Optional<BookingModel> findByPropertyId(Long property_id);
-    @Query("SELECT b FROM BookingModel b WHERE b.property_id = :property_id")
-    Optional<BookingModel> findByPropertyId(@Param("property_id") Long property_id);
+
+    Optional<BookingModel> findByPropertyId(Long propertyId);
 }

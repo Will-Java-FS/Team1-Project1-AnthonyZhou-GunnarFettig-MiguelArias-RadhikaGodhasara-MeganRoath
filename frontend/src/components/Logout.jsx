@@ -1,9 +1,9 @@
 import { Navigate } from "react-router-dom";
-import { Button, Heading, HStack } from '@chakra-ui/react'
+import { Button, Heading, HStack, Box } from '@chakra-ui/react'
 import AuthenticationService from "./AuthenticationService";
 
 export default function Logout() {
-    if (AuthenticationService.isLoggedIn() | true) {
+    if (AuthenticationService.isLoggedIn()) {
         const logoutClicked = async (event) => {
             event.preventDefault();
             AuthenticationService.logout();
@@ -12,11 +12,9 @@ export default function Logout() {
         
         return (
             <>
-            <HStack spacing = '10px' align = 'right'>
-                <p>{AuthenticationService.isLoggedIn()}</p>
-                <p>{AuthenticationService.isLoggedInOwner()}</p>
-                <p>{AuthenticationService.isLoggedInRenter()}</p>
-                <Heading>Logged in as {AuthenticationService.loggedInUsername()}</Heading>
+            <Box w='100px'></Box>
+            <HStack spacing = '20px'>
+                <Heading size='lg' >Logged in as {AuthenticationService.loggedInUsername()}</Heading>
                 <Button onClick = {logoutClicked}>Logout</Button>
             </HStack>
             </>

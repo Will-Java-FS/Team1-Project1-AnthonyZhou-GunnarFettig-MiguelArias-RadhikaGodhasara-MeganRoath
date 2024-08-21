@@ -17,10 +17,9 @@ export default function Rentals() {
         .catch(error => {
             console.error('Error when attempting to retrieve rental properties!', error);
         });
-    // }, [rentals]);
     }, [])
 
-    if (AuthenticationService.isLoggedInRenter()) {
+    if (AuthenticationService.loggedInUserRole() == "renter") {
         return (
             <>
             <Heading size='md'>Available properties</Heading>

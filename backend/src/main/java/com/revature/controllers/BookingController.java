@@ -62,7 +62,7 @@ public class BookingController {
         if(booking.getStatus().equals("cancelled")){
             return ResponseEntity.status(409).body("Booking was previously cancelled.");
         } else {
-            Long tryId = booking.getBooking_id();
+            Long tryId = booking.getBookingId();
             bookingService.deleteBooking(tryId);
             return ResponseEntity.status(200).body("Booking cancelled successfully.");
         }

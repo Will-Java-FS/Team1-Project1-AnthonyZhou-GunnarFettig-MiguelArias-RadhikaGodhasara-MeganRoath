@@ -16,9 +16,12 @@ class AuthenticationService {
     }
 
     logout() {
+        sessionStorage.setItem("authenticatedUser", null);
+        sessionStorage.setItem("authenticatedUserId", null);
         delete axios.defaults.headers.common["Authorization"];
         localStorage.clear();
         sessionStorage.clear();
+        window.location.reload(false);
     }
 
 	loggedInUsername() {
@@ -29,16 +32,12 @@ class AuthenticationService {
 		return sessionStorage.getItem("authenticatedUserId");
 	}
 
+    loggedInUserRole(){
+        return sessionStorage.getItem("role");
+    }
+
     isLoggedIn() {
-        return sessionStorage.getItem("role") === ("renter" || "owner");
-    }
-
-    isLoggedInRenter() {
-		return sessionStorage.getItem("role") === "renter";
-    }
-
-    isLoggedInOwner() {
-        return sessionStorage.getItem("role") === "owner";
+        return sessionStorage.getItem("role") == "renter" || sessionStorage.getItem("role") == "owner";
     }
 
     setUpToken(token) {
@@ -47,8 +46,12 @@ class AuthenticationService {
     }
 
     axiosToken() {
-        axios.defaults.headers.common["Authorization"] = "Bearer " +
+        if (this.isLoggedIn()) {
+            axios.defaults.headers.common["Authorization"] = "Bearer " +
                                     sessionStorage.getItem("token");
+        } else {
+            delete axios.defaults.headers.common["Authorization"];
+        }
     }
 }
 
