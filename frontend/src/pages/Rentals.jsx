@@ -11,13 +11,14 @@ export default function Rentals() {
         .then(response => {
             console.log(response.data);
             if (response.status == 200) {
-                setRentals(response.data.results);
+                setRentals(response.data);
             }
         })
         .catch(error => {
             console.error('Error when attempting to retrieve rental properties!', error);
         });
-    }, [rentals]);
+    // }, [rentals]);
+    }, [])
 
     if (AuthenticationService.isLoggedInRenter()) {
         return (
@@ -27,19 +28,32 @@ export default function Rentals() {
                 <Table>
                     <Thead>
                         <Tr>
+                            <Th>Address</Th>
+                            <Th>City</Th>
+                            <Th>Zip Code</Th>
+                            <Th>State</Th>
+                            <Th>Bathrooms</Th>
+                            <Th>Bedrooms</Th>
+                            <Th>Price</Th>
                             <Th>Description</Th>
                             <Th>Max Guests</Th>
-                            <Th>Address</Th>
-                            <Th>Rent</Th>
+                            <Th>Pets</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
                         {rentals && rentals.map && rentals.map(rental =>
                             <>
                             <Tr key = {rental.id}>
+                                <Td>{rental.address}</Td>
+                                <Td>{rental.city}</Td>
+                                <Td>{rental.zipcode}</Td>
+                                <Td>{rental.state}</Td>
+                                <Td>{rental.bathrooms}</Td>
+                                <Td>{rental.bedrooms}</Td>
+                                <Td>{rental.price}</Td>
                                 <Td>{rental.description}</Td>
-                                <Td>{rental.maxGuests}</Td>
-                                <Td>{rental.location}</Td>
+                                <Td>{rental.guests}</Td>
+                                <Td>{rental.pets ? 'Yes' : 'No'}</Td>
                                 <Td><ChakraLink as={ReactRouterLink} to={"/rent/" + rental.id}><Button>Rent</Button></ChakraLink></Td>
                             </Tr>
                             </>
