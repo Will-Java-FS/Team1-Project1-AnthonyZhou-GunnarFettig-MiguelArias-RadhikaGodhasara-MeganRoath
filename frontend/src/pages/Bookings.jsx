@@ -13,7 +13,7 @@ export default function Bookings() {
         .then(response => {
             console.log(response.data);
             if (response.status == 200) {
-                setBookings(response.data);
+                setBookings(response.data.filter((value) => value.guestId == AuthenticationService.loggedInUserId()));
             }
         })
         .catch(error => {
