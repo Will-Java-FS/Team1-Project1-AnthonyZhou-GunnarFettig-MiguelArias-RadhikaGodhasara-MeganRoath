@@ -22,11 +22,9 @@ public class BookingService {
     //needs to throw exceptions if outside of date range
     //throw exception if property is already booked
     public BookingModel addBooking(BookingModel booking) {
-        if((booking.getStatus().equals("confirmed")) || (booking.getEndDate().isBefore(booking.getStartDate()))){
+        if((booking.getStatus().equals("canceled")) || (booking.getEndDate().isBefore(booking.getStartDate()))){
             return null;
         } else {
-            Long attempt = booking.getBookingId();
-            Optional<BookingModel> bookingAttempt = bookingRepo.findById(attempt);
             booking.setStatus("confirmed");
             return bookingRepo.save(booking);
         }
@@ -50,12 +48,14 @@ public class BookingService {
             return booking;
     }
 
-    public void deleteBooking(Long booking_id) {
+    public int deleteBooking(Long booking_id) {
         Optional<BookingModel> optionalBooking = bookingRepo.findById(booking_id);
         if (optionalBooking.isPresent()) {
             optionalBooking.get().setStatus("cancelled");
             bookingRepo.deleteById(booking_id);
+            return 1;
         }
+        return 0;
     }
 
 }

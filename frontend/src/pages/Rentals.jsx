@@ -23,6 +23,7 @@ export default function Rentals() {
         return (
             <>
             <Heading size='md'>Available properties</Heading>
+            <ChakraLink as={ReactRouterLink} to={"/bookings"}><Button>Your Bookings</Button></ChakraLink>
             <TableContainer>
                 <Table>
                     <Thead>

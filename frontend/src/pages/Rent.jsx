@@ -11,7 +11,6 @@ export default function Rent() {
 
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
-    const [numGuests, setNumGuests] = useState(1);
 
     const [rental, setRental] = useState('');
     useEffect(() => {
@@ -37,12 +36,11 @@ export default function Rent() {
                 guestId: Number(AuthenticationService.loggedInUserId()),
                 startDate: start,
                 endDate: end,
-                numGuests: numGuests
+                status: "confirmed"
             })
             .then(response => {
                 console.log(response.data);
                 if (response.status == 200) {
-                    setRental(response.data);
                     navigate("/bookings");
                 }
             })
@@ -73,7 +71,7 @@ export default function Rent() {
                 </FormControl>
                 <FormControl isRequired>
                     <FormLabel>Number Of Guests (Max: {rental.guests})</FormLabel>
-                    <NumberInput onSubmit={event => setNumGuests(event.target.value)} max = {rental.guests} min = {1}>
+                    <NumberInput max = {rental.guests} min = {1}>
                         <NumberInputField />
                         <NumberInputStepper>
                             <NumberIncrementStepper />

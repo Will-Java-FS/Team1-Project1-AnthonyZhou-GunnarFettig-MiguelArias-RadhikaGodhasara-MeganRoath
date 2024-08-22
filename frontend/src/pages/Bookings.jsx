@@ -8,26 +8,27 @@ export default function Bookings() {
     const [bookings, setBookings] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8000/bookings")
+        AuthenticationService.axiosToken();
+        axios.get("http://localhost:8080/bookings")
         .then(response => {
             console.log(response.data);
             if (response.status == 200) {
-                setBookings(response.data.results);
+                setBookings(response.data);
             }
         })
         .catch(error => {
             console.error('Error when attempting to retrieve bookings!', error);
         });
-    }, [bookings]);
+    }, []);
 
-    if (AuthenticationService.AuthenticationService.loggedInUserRole() == "renter") {
-        const cancelBooking = async (bookingId, event) => {
+    if (AuthenticationService.loggedInUserRole() == "renter") {
+        const cancelBooking = async (event, bookingId) => {
             event.preventDefault();
             await axios.delete("http://localhost:8080/bookings/" + bookingId)
             .then(response => {
                 console.log(response.data);
                 if (response.status == 200) {
-                    setBookings(bookings.filter((value) => value.id != bookingId));
+                    setBookings(bookings.filter((value) => value.bookingId != bookingId));
                 }
             })
             .catch(error => {
@@ -43,7 +44,6 @@ export default function Bookings() {
                 <Table>
                     <Thead>
                         <Tr>
-                            <Th>Address</Th>
                             <Th>Start</Th>
                             <Th>End</Th>
                             <Th>Status</Th>
@@ -53,12 +53,11 @@ export default function Bookings() {
                     <Tbody>
                         {bookings && bookings.map && bookings.map(booking =>
                             <>
-                            <Tr key = {booking.id}>
-                                <Td>{booking.property.address}</Td>
+                            <Tr key = {booking.bookingId}>
                                 <Td>{booking.startDate}</Td>
                                 <Td>{booking.endDate}</Td>
                                 <Td>{booking.status}</Td>
-                                <Td><Button variant = "link" onClick = {cancelBooking(booking.id)}>Cancel</Button></Td>
+                                <Td><Button variant = "link" onClick = {(e) => {cancelBooking(e, booking.bookingId)}}>Cancel</Button></Td>
                             </Tr>
                             </>
                         )}

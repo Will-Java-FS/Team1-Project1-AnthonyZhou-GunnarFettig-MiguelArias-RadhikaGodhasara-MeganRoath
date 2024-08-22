@@ -11,8 +11,6 @@ import java.time.LocalDate;
 @Entity
 @Data
 @Table(name = "bookings")
-@Getter
-@Setter
 public class BookingModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +21,10 @@ public class BookingModel {
     @Column(name = "user_id")
     private Long guestId;
     @Column(name = "start_date")
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     @Column(name = "end_date")
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     @Column(nullable = false)
     private String status;
