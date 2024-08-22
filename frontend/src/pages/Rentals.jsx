@@ -22,7 +22,7 @@ export default function Rentals() {
     if (AuthenticationService.loggedInUserRole() == "renter") {
         return (
             <>
-            <Heading size='md'>Available properties</Heading>
+            <Heading size='lg'>Available properties</Heading>
             <ChakraLink as={ReactRouterLink} to={"/bookings"}><Button>Your Bookings</Button></ChakraLink>
             <TableContainer>
                 <Table>

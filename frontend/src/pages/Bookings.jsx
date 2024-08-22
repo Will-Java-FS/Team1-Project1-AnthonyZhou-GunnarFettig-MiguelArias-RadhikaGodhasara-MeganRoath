@@ -39,7 +39,7 @@ export default function Bookings() {
         return (
             <>
             <TableContainer>
-                <Heading size='md'>Your Bookings</Heading>
+                <Heading size='lg'>Your Bookings</Heading>
                 <ChakraLink as={ReactRouterLink} to="/rent"><Button>Back</Button></ChakraLink>
                 <Table>
                     <Thead>
