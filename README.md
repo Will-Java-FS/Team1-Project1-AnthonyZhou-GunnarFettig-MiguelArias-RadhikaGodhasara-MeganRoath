@@ -17,7 +17,7 @@ Integrated Technology Frameworks include Java 17+, Spring Boot 3+, PostgreSQL da
 - As a renter, view booking history
 
 ## Setting up the Database
-You can configure your database and modify the application.properties files as you please, but if you do not want to change the application.properties file your database should have the following names: settings:
+You can configure your database and modify the application.properties files as you please, but if you do not want to change the application.properties file your database should have the following names:
 ```
 Database name: postgres
 Schema name: public
