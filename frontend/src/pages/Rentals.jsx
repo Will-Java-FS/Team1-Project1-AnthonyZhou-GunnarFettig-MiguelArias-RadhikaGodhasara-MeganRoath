@@ -47,7 +47,6 @@ export default function Rentals() {
                             </Thead>
                             <Tbody>
                                 {rentals && rentals.map && rentals.map(rental =>
-                                    <>
                                     <Tr key = {rental.id}>
                                         <Td>{rental.address}</Td>
                                         <Td>{rental.city}</Td>
@@ -61,7 +60,6 @@ export default function Rentals() {
                                         <Td>{rental.pets ? 'Yes' : 'No'}</Td>
                                         <Td><ChakraLink as={ReactRouterLink} to={"/rent/" + rental.id}><Button>Rent</Button></ChakraLink></Td>
                                     </Tr>
-                                    </>
                                 )}
                             </Tbody>
                         </Table>

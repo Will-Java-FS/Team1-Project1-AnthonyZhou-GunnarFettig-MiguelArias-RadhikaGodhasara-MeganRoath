@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import  { Navigate, Link as ReactRouterLink, useParams, useNavigate } from 'react-router-dom'
-import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Button, Input, NumberInput, NumberInputField,
+import { Link as ChakraLink, FormControl, FormLabel, Button, Input, NumberInput, NumberInputField,
         NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Heading, Flex, Box, VStack} from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
@@ -49,8 +49,6 @@ export default function Rent() {
             });
         }
 
-        // TODO: Display bookings for location and dont allow new overlapping booking
-        // TODO: If submit fails show message and/or change colors, etc
         return (
             <Flex width="full" align="center" justifyContent="center">
                 <VStack>

@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { Button, Heading, HStack, Box } from '@chakra-ui/react'
+import { Button, Heading, HStack } from '@chakra-ui/react'
 import AuthenticationService from "./AuthenticationService";
 
 export default function Logout() {

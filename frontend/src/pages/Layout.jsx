@@ -1,5 +1,5 @@
 import { Outlet, Navigate } from "react-router-dom";
-import { Heading, Flex, HStack, Spacer } from '@chakra-ui/react'
+import { Heading, Flex, Spacer } from '@chakra-ui/react'
 import Logout from "../components/Logout";
 
 export default function Layout() {
