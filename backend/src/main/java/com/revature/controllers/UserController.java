@@ -2,10 +2,10 @@ package com.revature.controllers;
 
 import com.revature.WebToken.JwtService;
 import com.revature.WebToken.LoginForm;
-import com.revature.models.AuthResponse;
+import com.revature.authResponse.AuthResponse;
 import com.revature.models.UserModel;
 import com.revature.repositories.UserRepo;
-import com.revature.services.UserModelDetailService;
+import com.revature.services.UserService;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class UserController {
     @Autowired
     private JwtService jwtService;
     @Autowired
-    private UserModelDetailService userModelDetailService;
+    private UserService userModelDetailService;
 
   @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody UserModel userModel) {

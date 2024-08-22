@@ -1,8 +1,6 @@
-package com.revature.models;
+package com.revature.authResponse;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
