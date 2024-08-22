@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import  { Navigate, Link as ReactRouterLink, useParams } from 'react-router-dom'
-import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Button, NumberInput, NumberInputField, Heading, Checkbox,
-        NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Input } from '@chakra-ui/react'
+import { Link as ChakraLink, FormControl, FormLabel, Button, NumberInput, NumberInputField, Heading, Checkbox, Flex,
+        NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Input, Box, VStack, HStack } from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
@@ -75,73 +75,80 @@ export default function PropertiesEdit() {
             });
         }
 
-        // TODO: If submit fails show message and/or change colors, etc
         return (
-            <>
-            <Heading size='md'>Edit your property</Heading>
-            <ChakraLink as = {ReactRouterLink} to="/properties"><Button>Back</Button></ChakraLink>
-            <form key = {property.id} onSubmit={updatePropertyClicked}>
-                <FormControl isRequired>
-                    <FormLabel>Address</FormLabel>
-                    <Input type="text" value={address} onChange={event => setAddress(event.currentTarget.value)} />
-                </FormControl>
-                <FormControl isRequired>
-                    <FormLabel>City</FormLabel>
-                    <Input type="text" value={city} onChange={event => setCity(event.currentTarget.value)} />
-                </FormControl>
-                <FormControl isRequired>
-                    <FormLabel>State</FormLabel>
-                    <Input type="text" value={state} onChange={event => setState(event.currentTarget.value)} />
-                </FormControl>
-                <FormControl isRequired>
-                    <FormLabel>Zip Code</FormLabel>
-                    <Input type="number" value={zipcode} onChange={event => setZipcode(event.currentTarget.value)} />
-                </FormControl>
-                <FormControl isRequired>
-                    <FormLabel>Description</FormLabel>
-                    <Input type="text" value={description} onChange={event => setDescription(event.currentTarget.value)} />
-                </FormControl>
-                <FormControl isRequired>
-                    <FormLabel>Price</FormLabel>
-                    <Input type="number" value={price} onChange={event => setPrice(event.currentTarget.value)} />
-                </FormControl>
-                <FormControl isRequired>
-                    <FormLabel>Bedrooms</FormLabel>
-                    <NumberInput onChange={(value) => setBedrooms(value)} defaultValue={bedrooms} min={1}>
-                        <NumberInputField />
-                        <NumberInputStepper>
-                            <NumberIncrementStepper />
-                            <NumberDecrementStepper />
-                        </NumberInputStepper>
-                    </NumberInput>
-                </FormControl>
-                <FormControl isRequired>
-                    <FormLabel>Bathrooms</FormLabel>
-                    <NumberInput onChange={(value) => setBathrooms(value)} defaultValue={bathrooms} min={1}>
-                        <NumberInputField />
-                        <NumberInputStepper>
-                            <NumberIncrementStepper />
-                            <NumberDecrementStepper />
-                        </NumberInputStepper>
-                    </NumberInput>
-                </FormControl>
-                <FormControl isRequired>
-                    <FormLabel>Max Guests</FormLabel>
-                    <NumberInput onChange={(value) => setMaxGuests(value)} defaultValue={maxGuests} min={1}>
-                        <NumberInputField />
-                        <NumberInputStepper>
-                            <NumberIncrementStepper />
-                            <NumberDecrementStepper />
-                        </NumberInputStepper>
-                    </NumberInput>
-                </FormControl>
-                <FormControl>
-                    <FormLabel>Pets</FormLabel>
-                    <Checkbox isChecked={pets} onChange={(event) => setPets(event.target.checked)}>Allow Pets</Checkbox>
-                </FormControl>
-                <Button type = "submit">Update Property</Button>
-            </form>
-            </>
+            <Flex p="5" width="full" align="center" justifyContent="center">
+                <VStack>
+                    <Box align="center">
+                        <Heading p="3" size='md'>Edit your property</Heading>
+                        <ChakraLink as = {ReactRouterLink} to="/properties"><Button>Back</Button></ChakraLink>
+                    </Box>
+                    <form key = {property.id} onSubmit={updatePropertyClicked}>
+                        <FormControl isRequired>
+                            <FormLabel>Address</FormLabel>
+                            <Input type="text" value={address} onChange={event => setAddress(event.currentTarget.value)} />
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel>City</FormLabel>
+                            <Input type="text" value={city} onChange={event => setCity(event.currentTarget.value)} />
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel>State</FormLabel>
+                            <Input type="text" value={state} onChange={event => setState(event.currentTarget.value)} />
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel>Zip Code</FormLabel>
+                            <Input type="number" value={zipcode} onChange={event => setZipcode(event.currentTarget.value)} />
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel>Description</FormLabel>
+                            <Input type="text" value={description} onChange={event => setDescription(event.currentTarget.value)} />
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel>Price</FormLabel>
+                            <Input type="number" value={price} onChange={event => setPrice(event.currentTarget.value)} />
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel>Bedrooms</FormLabel>
+                            <NumberInput onChange={(value) => setBedrooms(value)} defaultValue={bedrooms} min={1}>
+                                <NumberInputField />
+                                <NumberInputStepper>
+                                    <NumberIncrementStepper />
+                                    <NumberDecrementStepper />
+                                </NumberInputStepper>
+                            </NumberInput>
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel>Bathrooms</FormLabel>
+                            <NumberInput onChange={(value) => setBathrooms(value)} defaultValue={bathrooms} min={1}>
+                                <NumberInputField />
+                                <NumberInputStepper>
+                                    <NumberIncrementStepper />
+                                    <NumberDecrementStepper />
+                                </NumberInputStepper>
+                            </NumberInput>
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel>Max Guests</FormLabel>
+                            <NumberInput onChange={(value) => setMaxGuests(value)} defaultValue={maxGuests} min={1}>
+                                <NumberInputField />
+                                <NumberInputStepper>
+                                    <NumberIncrementStepper />
+                                    <NumberDecrementStepper />
+                                </NumberInputStepper>
+                            </NumberInput>
+                        </FormControl>
+                        <FormControl>
+                            <HStack>
+                                <FormLabel>Pets</FormLabel>
+                                <Checkbox isChecked={pets} onChange={(event) => setPets(event.target.checked)}>Allow Pets</Checkbox>
+                            </HStack>
+                        </FormControl>
+                        <Box p="3" align="center">
+                            <Button type = "submit">Update Property</Button>
+                        </Box>
+                    </form>
+                </VStack>
+            </Flex>
         )
     } else {
         return <Navigate to = '/login' />

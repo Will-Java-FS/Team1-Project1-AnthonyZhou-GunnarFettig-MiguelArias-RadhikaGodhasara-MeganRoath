@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import  { Navigate, Link as ReactRouterLink, useParams, useNavigate } from 'react-router-dom'
 import { Link as ChakraLink, FormControl, FormLabel, FormErrorMessage, Button, Input, NumberInput, NumberInputField,
-        NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Heading} from '@chakra-ui/react'
+        NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Heading, Flex, Box, VStack} from '@chakra-ui/react'
 import axios from "axios";
 import AuthenticationService from "../components/AuthenticationService";
 
@@ -52,37 +52,43 @@ export default function Rent() {
         // TODO: Display bookings for location and dont allow new overlapping booking
         // TODO: If submit fails show message and/or change colors, etc
         return (
-            <>
-            <Heading size='lg'>Rent this property</Heading>
-            <ChakraLink as={ReactRouterLink} to="/rent"><Button>Back</Button></ChakraLink>
-            <Heading size='md'>Address: {rental.address +", "+ rental.city +", "+ rental.state +" "+ rental.zipcode}</Heading>
-            <Heading size='md'>Description: {rental.description}</Heading>
-            <Heading size='md'>Bedrooms: {rental.bedrooms}</Heading>
-            <Heading size='md'>Bathrooms: {rental.bathrooms}</Heading>
-            <Heading size='md'>Pets allowed: {rental.pets ? 'Yes' : 'No'}</Heading>
-            <form  onSubmit={rentClicked}>
-                <FormControl isRequired>
-                    <FormLabel>Start Date</FormLabel>
-                    <Input type = "date" placeholder = "Enter Start Date" onChange={event => setStart(event.currentTarget.value)} />
-                </FormControl>
-                <FormControl isRequired>
-                    <FormLabel>End Date</FormLabel>
-                    <Input type = "date" placeholder = "Enter End Date" onChange={event => setEnd(event.currentTarget.value)} />
-                </FormControl>
-                <FormControl isRequired>
-                    <FormLabel>Number Of Guests (Max: {rental.guests})</FormLabel>
-                    <NumberInput max = {rental.guests} min = {1}>
-                        <NumberInputField />
-                        <NumberInputStepper>
-                            <NumberIncrementStepper />
-                            <NumberDecrementStepper />
-                        </NumberInputStepper>
-                    </NumberInput>
-                </FormControl>
-                <br/>
-                <Button type = "submit">Rent</Button>
-            </form>
-            </>
+            <Flex width="full" align="center" justifyContent="center">
+                <VStack>
+                    <Box p="3" align="center">
+                        <Heading size='lg'>Rent this property</Heading>
+                        <br/>
+                        <ChakraLink as={ReactRouterLink} to="/rent"><Button>Back</Button></ChakraLink>
+                    </Box>
+                    <Heading size='md'>Address: {rental.address +", "+ rental.city +", "+ rental.state +" "+ rental.zipcode}</Heading>
+                    <Heading size='md'>Description: {rental.description}</Heading>
+                    <Heading size='md'>Bedrooms: {rental.bedrooms}</Heading>
+                    <Heading size='md'>Bathrooms: {rental.bathrooms}</Heading>
+                    <Heading size='md'>Pets allowed: {rental.pets ? 'Yes' : 'No'}</Heading>
+                    <form  onSubmit={rentClicked}>
+                        <FormControl isRequired>
+                            <FormLabel>Start Date</FormLabel>
+                            <Input type = "date" placeholder = "Enter Start Date" onChange={event => setStart(event.currentTarget.value)} />
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel>End Date</FormLabel>
+                            <Input type = "date" placeholder = "Enter End Date" onChange={event => setEnd(event.currentTarget.value)} />
+                        </FormControl>
+                        <FormControl isRequired>
+                            <FormLabel>Number Of Guests (Max: {rental.guests})</FormLabel>
+                            <NumberInput max = {rental.guests} min = {1}>
+                                <NumberInputField />
+                                <NumberInputStepper>
+                                    <NumberIncrementStepper />
+                                    <NumberDecrementStepper />
+                                </NumberInputStepper>
+                            </NumberInput>
+                        </FormControl>
+                        <Box p="4" align="center">
+                            <Button type = "submit">Rent</Button>
+                        </Box>
+                    </form>
+                </VStack>
+            </Flex>
         )
     } else {
         return <Navigate to = '/login' />

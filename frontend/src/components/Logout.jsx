@@ -11,13 +11,10 @@ export default function Logout() {
         }
         
         return (
-            <>
-            <Box w='100px'></Box>
-            <HStack spacing = '20px'>
+            <HStack spacing = '20px' justify="right">
                 <Heading size='lg' >Logged in as {AuthenticationService.loggedInUsername()}</Heading>
                 <Button onClick = {logoutClicked}>Logout</Button>
             </HStack>
-            </>
         )
     } else {
         return <></>
