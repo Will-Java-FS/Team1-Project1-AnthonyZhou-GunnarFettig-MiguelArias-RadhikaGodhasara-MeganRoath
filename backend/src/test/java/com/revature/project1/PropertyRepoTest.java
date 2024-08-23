@@ -1,4 +1,4 @@
-package com.revature;
+package com.revature.project1;
 
 import com.revature.models.*;
 import com.revature.repositories.PropertyRepo;

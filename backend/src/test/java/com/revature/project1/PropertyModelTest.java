@@ -1,4 +1,4 @@
-package com.revature;
+package com.revature.project1;
 
 import com.revature.models.PropertyModel;
 import com.revature.models.UserModel;
